@@ -64,7 +64,7 @@ export default function PortfolioPage() {
   </div>
 </section>
 
-      {/* Projects Section */}
+{/* Projects Section */}
 <section className="max-w-3xl mx-auto mb-20">
   <h2 className="text-2xl font-semibold mb-6">Projects</h2>
   <div className="relative">
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
           <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
             <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
               <Image
-                src="/placeholder.svg"
+                src="https://github.com/shadcn.png"
                 alt="Institution logo"
                 width={64}
                 height={64}
