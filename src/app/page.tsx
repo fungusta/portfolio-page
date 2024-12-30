@@ -39,92 +39,148 @@ export default function PortfolioPage() {
       </section>
 
       {/* Work Experience Section */}
-<section className="max-w-3xl mx-auto mb-20">
-  <h2 className="text-2xl font-semibold mb-6">Work Experience</h2>
-  <div className="relative">
-    <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-    <div className="flex justify-between items-center px-6">
-      {[1, 2, 3, 4].map((item, index) => (
-        <div key={item} className="relative flex flex-col items-center py-12">
-          <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-            <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
-              <Image
-                src="/placeholder.svg"
-                alt="Company logo"
-                width={64}
-                height={64}
-                className="rounded-lg"
-              />
-            </div>
+      <section className="max-w-3xl mx-auto mb-20">
+        <h2 className="text-2xl font-semibold mb-6">Work Experience</h2>
+        <div className="relative">
+          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
+          <div className="flex justify-between items-center px-6">
+            {[
+              { id: 1, src: 'https://github.com/shadcn.png' },
+              { id: 2, src: 'https://github.com/shadcn.png' },
+              { id: 3, src: 'https://github.com/shadcn.png' },
+              { id: 4, src: 'https://github.com/shadcn.png' }
+            ].map((item, index) => (
+              <div key={item.id} className="relative flex flex-col items-center py-12">
+                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
+                  <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
+                    <Image
+                      src={item.src}
+                      alt="Company logo"
+                      width={64}
+                      height={64}
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
+              </div>
+            ))}
           </div>
-          <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
-{/* Projects Section */}
-<section className="max-w-3xl mx-auto mb-20">
-  <h2 className="text-2xl font-semibold mb-6">Projects</h2>
-  <div className="relative">
-    <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-    <div className="flex justify-between items-center px-6">
-      {[1, 2, 3].map((item, index) => (
-        <div key={item} className="relative flex flex-col items-center py-12">
-          <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-            <div className="w-16 h-16 bg-gray-800 rounded-full transition-transform hover:scale-110 flex items-center justify-center">
-              <div className="w-8 h-8 border-2 border-[#B19CD9] rounded-full" />
-            </div>
+      {/* Projects Section */}
+      <section className="max-w-3xl mx-auto mb-20">
+        <h2 className="text-2xl font-semibold mb-6">Projects</h2>
+        <div className="relative">
+          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
+          <div className="flex justify-between items-center px-6">
+            {[
+              { id: 1, src: 'https://github.com/shadcn.png' },
+              { id: 2, src: 'https://github.com/shadcn.png' },
+              { id: 3, src: 'https://github.com/shadcn.png' }
+            ].map((item, index) => (
+              <div key={item.id} className="relative flex flex-col items-center py-12">
+                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
+                  <div className="w-16 h-16 bg-gray-800 rounded-full transition-transform hover:scale-110 flex items-center justify-center">
+                    <Image
+                      src={item.src}
+                      alt="Project logo"
+                      width={64}
+                      height={64}
+                      className="rounded-full"
+                    />
+                  </div>
+                </div>
+                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
+              </div>
+            ))}
           </div>
-          <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Education Section */}
       <section className="max-w-3xl mx-auto mb-20">
-  <h2 className="text-2xl font-semibold mb-6">Education</h2>
-  <div className="relative">
-    <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-    <div className="flex justify-between items-center px-6">
-      {[1, 2, 3].map((item, index) => (
-        <div key={item} className="relative flex flex-col items-center py-12">
-          <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-            <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
-              <Image
-                src="https://github.com/shadcn.png"
-                alt="Institution logo"
-                width={64}
-                height={64}
-                className="rounded-lg"
-              />
-            </div>
+        <h2 className="text-2xl font-semibold mb-6">Education</h2>
+        <div className="relative">
+          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
+          <div className="flex justify-between items-center px-6">
+            {[
+              { id: 1, src: 'https://github.com/shadcn.png' },
+              { id: 2, src: 'https://github.com/shadcn.png' },
+              { id: 3, src: 'https://github.com/shadcn.png' }
+            ].map((item, index) => (
+              <div key={item.id} className="relative flex flex-col items-center py-12">
+                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
+                  <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
+                    <Image
+                      src={item.src}
+                      alt="Institution logo"
+                      width={64}
+                      height={64}
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
+              </div>
+            ))}
           </div>
-          <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Interests Section */}
       <section className="max-w-3xl mx-auto">
         <h2 className="text-2xl font-semibold mb-6">Interests</h2>
         <div className="grid grid-cols-2 gap-4">
-          {[1, 2, 3, 4].map((item) => (
+          {[
+            {
+              title: "Gaming",
+              images: [
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                // Add more image paths as needed
+              ]
+            },
+            {
+              title: "Photography",
+              images: [
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                // Add more image paths as needed
+              ]
+            },
+            {
+              title: "Music",
+              images: [
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                // Add more image paths as needed
+              ]
+            },
+            {
+              title: "Travel",
+              images: [
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                // Add more image paths as needed 
+              ]
+            }
+          ].map((interest, index) => (
             <div
-              key={item}
+              key={index}
               className="aspect-video relative overflow-hidden rounded-lg transition-transform hover:scale-105"
             >
+              {/* Display first image as default, can be enhanced to create image carousel */}
               <Image
-                src="/placeholder.svg"
-                alt="Interest"
+                src={interest.images[0] || "/placeholder.svg"}
+                alt={interest.title}
                 fill
                 className="object-cover"
               />
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+                <p className="text-white text-center">{interest.title}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -132,4 +188,3 @@ export default function PortfolioPage() {
     </div>
   )
 }
-
