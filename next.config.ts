@@ -6,13 +6,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true, // Disable default image optimization
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-        pathname: '/**',
-      },
-    ],
   },
   assetPrefix: isProd ? '/portfolio-page/' : '',
   basePath: isProd ? `/${REPO_NAME}` : '',

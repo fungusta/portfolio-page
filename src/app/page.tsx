@@ -7,11 +7,16 @@ import { useState } from "react"
 export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<{ id: number; section: 'company' | 'project' | 'education' } | null>(null)
 
+  const getImagePath = (path: string) => {
+    const isProd = process.env.NODE_ENV === 'production'
+    return isProd ? `/portfolio-page${path}` : path
+  }
+  
   const companies = [
-    { id: 1, src: '/images/csa-logo.jpg', title: 'CSA', description: 'Role and details here' },
-    { id: 2, src: '/images/dynamite-games-logo.jpg', title: 'Dynamite Games', description: 'Role and details here' },
-    { id: 3, src: '/images/witzu-logo.jpg', title: 'Witz-U', description: 'Role and details here' },
-    { id: 4, src: '/images/node-logo.jpg', title: 'economy-v1', description: 'Role and details here' }
+    { id: 1, src: getImagePath('/images/csa-logo.jpg'), title: 'CSA', description: 'Role and details here' },
+    { id: 2, src: getImagePath('/images/dynamite-games-logo.jpg'), title: 'Dynamite Games', description: 'Role and details here' },
+    { id: 3, src: getImagePath('/images/witzu-logo.jpg'), title: 'Witz-U', description: 'Role and details here' },
+    { id: 4, src: getImagePath('/images/node-logo.jpg'), title: 'economy-v1', description: 'Role and details here' }
   ]
 
   const projects = [
@@ -21,9 +26,9 @@ export default function PortfolioPage() {
   ]
 
   const education = [
-    { id: 1, src: '/images/acs-logo.png', title: 'Anglo-Chinese School', description: 'Secondary Education' },
-    { id: 2, src: '/images/pjc-logo.png', title: 'Pioneer Junior College', description: 'Junior College' },
-    { id: 3, src: '/images/nus-logo.png', title: 'National University of Singapore', description: 'University' }
+    { id: 1, src: getImagePath('/images/acs-logo.png'), title: 'Anglo-Chinese School', description: 'Secondary Education' },
+    { id: 2, src: getImagePath('/images/pjc-logo.png'), title: 'Pioneer Junior College', description: 'Junior College' },
+    { id: 3, src: getImagePath('/images/nus-logo.png'), title: 'National University of Singapore', description: 'University' }
   ]
 
   const getSelectedItemDetails = () => {
