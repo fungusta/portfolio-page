@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
     ],
   },
   assetPrefix: isProd ? '/portfolio-page/' : '',
-  basePath: isProd ? `${REPO_NAME}` : '',
+  basePath: isProd ? `/${REPO_NAME}` : '',
   output: 'export'
 };
 
