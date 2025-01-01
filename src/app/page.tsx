@@ -1,7 +1,71 @@
+'use client'
+
 import Image from "next/image"
 import { ChevronDown } from 'lucide-react'
+import { useState } from "react"
 
 export default function PortfolioPage() {
+  const [selectedItem, setSelectedItem] = useState<{ id: number; section: 'company' | 'project' | 'education' } | null>(null)
+
+  const companies = [
+    { id: 1, src: '/images/csa-logo.jpg', title: 'CSA', description: 'Role and details here' },
+    { id: 2, src: '/images/dynamite-games-logo.jpg', title: 'Dynamite Games', description: 'Role and details here' },
+    { id: 3, src: '/images/witzu-logo.jpg', title: 'Witz-U', description: 'Role and details here' },
+    { id: 4, src: '/images/node-logo.jpg', title: 'economy-v1', description: 'Role and details here' }
+  ]
+
+  const projects = [
+    { id: 1, src: 'https://github.com/shadcn.png', title: 'Project 1', description: 'Project details here' },
+    { id: 2, src: 'https://github.com/shadcn.png', title: 'Project 2', description: 'Project details here' },
+    { id: 3, src: 'https://github.com/shadcn.png', title: 'Project 3', description: 'Project details here' }
+  ]
+
+  const education = [
+    { id: 1, src: '/images/acs-logo.png', title: 'Anglo-Chinese School', description: 'Secondary Education' },
+    { id: 2, src: '/images/pjc-logo.png', title: 'Pioneer Junior College', description: 'Junior College' },
+    { id: 3, src: '/images/nus-logo.png', title: 'National University of Singapore', description: 'University' }
+  ]
+
+  const getSelectedItemDetails = () => {
+    if (!selectedItem) return null
+    
+    const collections = {
+      company: companies,
+      project: projects,
+      education: education
+    }
+    
+    return collections[selectedItem.section].find(item => item.id === selectedItem.id)
+  }
+
+  // Shared Timeline Component
+  const Timeline = ({ items, section }: { items: typeof companies, section: 'company' | 'project' | 'education' }) => (
+    <div className="relative">
+      <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
+      <div className="flex justify-between items-center px-6">
+        {items.map((item, index) => (
+          <div key={item.id} className="relative flex flex-col items-center py-12">
+            <div 
+              className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-24'}`}
+              onClick={() => setSelectedItem({ id: item.id, section })}
+            >
+              <div className={`w-16 h-16 ${section === 'project' ? 'rounded-full' : 'rounded-lg'} transition-transform hover:scale-110 cursor-pointer`}>
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={64}
+                  height={64}
+                  className={section === 'project' ? 'rounded-full' : 'rounded-lg'}
+                />
+              </div>
+            </div>
+            <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+
   return (
     <div className="relative w-full overflow-x-auto min-h-screen bg-[#1A1D21] text-white px-4 py-12 md:px-8">
       {/* Header Section */}
@@ -41,93 +105,48 @@ export default function PortfolioPage() {
       {/* Work Experience Section */}
       <section className="max-w-3xl mx-auto mb-20">
         <h2 className="text-2xl font-semibold mb-6">Work Experience</h2>
-        <div className="relative">
-          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-          <div className="flex justify-between items-center px-6">
-            {[
-              { id: 1, src: 'https://github.com/shadcn.png' },
-              { id: 2, src: 'https://github.com/shadcn.png' },
-              { id: 3, src: 'https://github.com/shadcn.png' },
-              { id: 4, src: 'https://github.com/shadcn.png' }
-            ].map((item, index) => (
-              <div key={item.id} className="relative flex flex-col items-center py-12">
-                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-                  <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
-                    <Image
-                      src={item.src}
-                      alt="Company logo"
-                      width={64}
-                      height={64}
-                      className="rounded-lg"
-                    />
-                  </div>
-                </div>
-                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
-              </div>
-            ))}
-          </div>
-        </div>
+        <Timeline items={companies} section="company" />
       </section>
 
       {/* Projects Section */}
       <section className="max-w-3xl mx-auto mb-20">
         <h2 className="text-2xl font-semibold mb-6">Projects</h2>
-        <div className="relative">
-          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-          <div className="flex justify-between items-center px-6">
-            {[
-              { id: 1, src: 'https://github.com/shadcn.png' },
-              { id: 2, src: 'https://github.com/shadcn.png' },
-              { id: 3, src: 'https://github.com/shadcn.png' }
-            ].map((item, index) => (
-              <div key={item.id} className="relative flex flex-col items-center py-12">
-                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-                  <div className="w-16 h-16 bg-gray-800 rounded-full transition-transform hover:scale-110 flex items-center justify-center">
-                    <Image
-                      src={item.src}
-                      alt="Project logo"
-                      width={64}
-                      height={64}
-                      className="rounded-full"
-                    />
-                  </div>
-                </div>
-                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
-              </div>
-            ))}
-          </div>
-        </div>
+        <Timeline items={projects} section="project" />
       </section>
 
       {/* Education Section */}
       <section className="max-w-3xl mx-auto mb-20">
         <h2 className="text-2xl font-semibold mb-6">Education</h2>
-        <div className="relative">
-          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-[#B19CD9]" />
-          <div className="flex justify-between items-center px-6">
-            {[
-              { id: 1, src: 'https://github.com/shadcn.png' },
-              { id: 2, src: 'https://github.com/shadcn.png' },
-              { id: 3, src: 'https://github.com/shadcn.png' }
-            ].map((item, index) => (
-              <div key={item.id} className="relative flex flex-col items-center py-12">
-                <div className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-20'}`}>
-                  <div className="w-16 h-16 bg-gray-800 rounded-lg transition-transform hover:scale-110">
-                    <Image
-                      src={item.src}
-                      alt="Institution logo"
-                      width={64}
-                      height={64}
-                      className="rounded-lg"
-                    />
-                  </div>
-                </div>
-                <div className="w-3 h-3 bg-[#B19CD9] rounded-full absolute top-1/2 transform -translate-y-1/2" />
+        <Timeline items={education} section="education" />
+      </section>
+
+      {/* Shared Overlay */}
+      {selectedItem && (
+        <div 
+          className="fixed inset-0 bg-[#1E1E1E] bg-opacity-95 z-50 flex items-center justify-center"
+          onClick={() => setSelectedItem(null)}
+        >
+          <div className="bg-[#1E1E1E] max-w-3xl w-full mx-auto p-6 h-[33vh] rounded-xl">
+            <div className="flex items-center gap-4 mb-4">
+              <div className={`w-12 h-12 ${selectedItem.section === 'project' ? 'rounded-full' : 'rounded-lg'}`}>
+                <Image
+                  src={getSelectedItemDetails()?.src || ''}
+                  alt={getSelectedItemDetails()?.title || ''}
+                  width={48}
+                  height={48}
+                  className={selectedItem.section === 'project' ? 'rounded-full' : 'rounded-lg'}
+                />
               </div>
-            ))}
+              <h3 className="text-2xl text-[#B19CD9]">
+                {getSelectedItemDetails()?.title}
+              </h3>
+            </div>
+            <p className="text-gray-400">
+              {getSelectedItemDetails()?.description}
+            </p>
           </div>
         </div>
-      </section>
+      )}
 
       {/* Interests Section */}
       <section className="max-w-3xl mx-auto">
