@@ -3,43 +3,21 @@
 import Image from "next/image"
 import { ChevronDown } from 'lucide-react'
 import { useState } from "react"
+import { companies, projects, education } from '@/constants/resources'
 
 export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<{ id: number; section: 'company' | 'project' | 'education' } | null>(null)
 
-  const getImagePath = (path: string) => {
-    const isProd = process.env.NODE_ENV === 'production'
-    return isProd ? `/portfolio-page${path}` : path
-  }
-  
-  const companies = [
-    { id: 1, src: getImagePath('/images/csa-logo.jpg'), title: 'CSA', description: 'Role and details here' },
-    { id: 2, src: getImagePath('/images/dynamite-games-logo.jpg'), title: 'Dynamite Games', description: 'Role and details here' },
-    { id: 3, src: getImagePath('/images/witzu-logo.jpg'), title: 'Witz-U', description: 'Role and details here' },
-    { id: 4, src: getImagePath('/images/node-logo.jpg'), title: 'economy-v1', description: 'Role and details here' }
-  ]
-
-  const projects = [
-    { id: 1, src: 'https://github.com/shadcn.png', title: 'Project 1', description: 'Project details here' },
-    { id: 2, src: 'https://github.com/shadcn.png', title: 'Project 2', description: 'Project details here' },
-    { id: 3, src: 'https://github.com/shadcn.png', title: 'Project 3', description: 'Project details here' }
-  ]
-
-  const education = [
-    { id: 1, src: getImagePath('/images/acs-logo.png'), title: 'Anglo-Chinese School', description: 'Secondary Education' },
-    { id: 2, src: getImagePath('/images/pjc-logo.png'), title: 'Pioneer Junior College', description: 'Junior College' },
-    { id: 3, src: getImagePath('/images/nus-logo.png'), title: 'National University of Singapore', description: 'University' }
-  ]
 
   const getSelectedItemDetails = () => {
     if (!selectedItem) return null
-    
+
     const collections = {
       company: companies,
       project: projects,
       education: education
     }
-    
+
     return collections[selectedItem.section].find(item => item.id === selectedItem.id)
   }
 
@@ -50,17 +28,17 @@ export default function PortfolioPage() {
       <div className="flex justify-between items-center px-6">
         {items.map((item, index) => (
           <div key={item.id} className="relative flex flex-col items-center py-12">
-            <div 
+            <div
               className={`flex items-center justify-center ${index % 2 === 0 ? '-mt-20' : 'mt-24'}`}
               onClick={() => setSelectedItem({ id: item.id, section })}
             >
-              <div className={`w-16 h-16 ${section === 'project' ? 'rounded-full' : 'rounded-lg'} transition-transform hover:scale-110 cursor-pointer`}>
+              <div className={`w-16 h-16 rounded-lg transition-transform hover:scale-110 cursor-pointer`}>
                 <Image
                   src={item.src}
                   alt={item.title}
                   width={64}
                   height={64}
-                  className={section === 'project' ? 'rounded-full' : 'rounded-lg'}
+                  className='rounded-lg'
                 />
               </div>
             </div>
@@ -127,26 +105,32 @@ export default function PortfolioPage() {
 
       {/* Shared Overlay */}
       {selectedItem && (
-        <div 
-          className="fixed inset-0 bg-[#1E1E1E] bg-opacity-95 z-50 flex items-center justify-center"
+        <div
+          className="fixed inset-0 bg-[#1E1E1E] bg-opacity-95 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedItem(null)}
         >
-          <div className="bg-[#1E1E1E] max-w-3xl w-full mx-auto p-6 h-[33vh] rounded-xl">
-            <div className="flex items-center gap-4 mb-4">
-              <div className={`w-12 h-12 ${selectedItem.section === 'project' ? 'rounded-full' : 'rounded-lg'}`}>
-                <Image
-                  src={getSelectedItemDetails()?.src || ''}
-                  alt={getSelectedItemDetails()?.title || ''}
-                  width={48}
-                  height={48}
-                  className={selectedItem.section === 'project' ? 'rounded-full' : 'rounded-lg'}
-                />
+          <div 
+            className="bg-[#1E1E1E] max-w-3xl w-full mx-auto p-8 rounded-xl"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-start gap-4 mb-6">
+              <Image
+                src={getSelectedItemDetails()?.src || ''}
+                alt={getSelectedItemDetails()?.title || ''}
+                width={100}
+                height={100}
+                className="rounded-lg"
+              />
+              <div className="pl-4">
+                <h2 className="text-3xl font-semibold mb-2 text-[#B19CD9]">
+                  {getSelectedItemDetails()?.title}
+                </h2>
+                <h3 className="text-xl text-gray-400">
+                  {getSelectedItemDetails()?.time}
+                </h3>
               </div>
-              <h3 className="text-2xl text-[#B19CD9]">
-                {getSelectedItemDetails()?.title}
-              </h3>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-400 whitespace-pre-wrap">
               {getSelectedItemDetails()?.description}
             </p>
           </div>
@@ -167,7 +151,7 @@ export default function PortfolioPage() {
               ]
             },
             {
-              title: "Photography",
+              title: "Drone Photography",
               images: [
                 "https://github.com/shadcn.png",
                 "https://github.com/shadcn.png",
@@ -175,7 +159,7 @@ export default function PortfolioPage() {
               ]
             },
             {
-              title: "Music",
+              title: "Football",
               images: [
                 "https://github.com/shadcn.png",
                 "https://github.com/shadcn.png",
@@ -183,7 +167,7 @@ export default function PortfolioPage() {
               ]
             },
             {
-              title: "Travel",
+              title: "Frisbee",
               images: [
                 "https://github.com/shadcn.png",
                 "https://github.com/shadcn.png",
