@@ -103,7 +103,7 @@ export const interests: Interest[] = [
   {
     title: "Gaming",
     images: [
-      getImagePath('images/interests/dota.jpg')
+      getImagePath('/images/interests/dota.jpg')
     ]
   },
   {
