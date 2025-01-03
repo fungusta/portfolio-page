@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Linkedin, Github, Mail } from 'lucide-react'
 import { useState } from "react"
 import { companies, projects, education, interests } from '@/constants/resources'
 
@@ -161,6 +161,34 @@ export default function PortfolioPage() {
           ))}
         </div>
       </section>
+
+      {/* Contacts Footer */}
+      <footer className="max-w-3xl mx-auto py-20 border-t border-gray-800">
+        <div className="flex justify-center space-x-16">
+          <a
+            href="https://linkedin.com/in/peterjosephfung"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-[#B19CD9] transition-colors"
+          >
+            <Linkedin className="w-8 h-8" />
+          </a>
+          <a
+            href="https://github.com/fungusta"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-[#B19CD9] transition-colors"
+          >
+            <Github className="w-8 h-8" />
+          </a>
+          <a
+            href="mailto:peterjosephfung@gmail.com"
+            className="text-gray-400 hover:text-[#B19CD9] transition-colors"
+          >
+            <Mail className="w-8 h-8" />
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }

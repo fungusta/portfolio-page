@@ -6,14 +6,14 @@ const getImagePath = (path: string) => {
 export const companies = [
     {
         id: 1,
-        src: getImagePath('/images/dynamite-games-logo.jpg'),
+        src: getImagePath('/images/dynamite-games-logo.png'),
         title: 'Dynamite Games',
         time:'Dec 2022 - Jan 2023',
         description: 'Utilized the Telegram Bot API to create an automated broadcast Telegram bot with continuous 24/7 uptime, enabling the company to distribute targeted alerts to multiple audiences.'
     },
     {
         id: 2,
-        src: getImagePath('/images/witzu-logo.jpg'),
+        src: getImagePath('/images/witzu-logo.png'),
         title: 'Witz-U',
         time:'May 2023 - Aug 2023',
         description: 'Spearheaded the design of mobile application interfaces using Figma, creating interactive prototypes for new functionalities and adding over 40 new UI screens, while collaborating with cross-functional teams to build features in Flutter and Dart, ensuring a seamless user experience.'
@@ -27,7 +27,7 @@ export const companies = [
     },
     {
         id: 4,
-        src: getImagePath('/images/node-logo.jpg'),
+        src: getImagePath('/images/node-logo.png'),
         title: 'economy-v1',
         time:'Oct 2024 - Dec 2024',
         description: 'Developed a web application integrating Bitcoin Lightning to enable clients to build and run AI agents, leveraging Next.js, TypeScript, React, and Tailwind CSS to deliver responsive and efficient user interfaces.'
@@ -68,7 +68,7 @@ export const education = [
     },
     {
         id: 2,
-        src: getImagePath('/images/pjc-logo.png'),
+        src: getImagePath('/images/pjc-logo.jpg'),
         title: 'Pioneer Junior College',
         time:'Jan 2017 - Dec 2018',
         description: ''
