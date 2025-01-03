@@ -1,3 +1,5 @@
+import { get } from "http"
+
 const getImagePath = (path: string) => {
     const isProd = process.env.NODE_ENV === 'production'
     return isProd ? `/portfolio-page${path}` : path
@@ -80,4 +82,36 @@ export const education = [
         time:'Aug 2021 - Present',
         description: ''
     }
+]
+
+export interface Interest {
+  title: string;
+  images: string[];
+}
+
+export const interests: Interest[] = [
+  {
+    title: "Football",
+    images: [
+      getImagePath('/images/interests/chelsea.jpg'),
+    ]
+  },
+  {
+    title: "Drone Photography",
+    images: [
+      getImagePath('/images/interests/drone-shot.jpg'),
+    ]
+  },
+  {
+    title: "Gaming",
+    images: [
+      getImagePath('images/interests/dota.jpg')
+    ]
+  },
+  {
+    title: "Frisbee",
+    images: [
+      getImagePath('/images/interests/frisbee.png')
+    ]
+  }
 ]

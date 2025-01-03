@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { ChevronDown } from 'lucide-react'
 import { useState } from "react"
-import { companies, projects, education } from '@/constants/resources'
+import { companies, projects, education, interests } from '@/constants/resources'
 
 export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<{ id: number; section: 'company' | 'project' | 'education' } | null>(null)
@@ -53,9 +53,9 @@ export default function PortfolioPage() {
     <div className="relative w-full overflow-x-auto min-h-screen bg-[#1A1D21] text-white px-4 py-12 md:px-8">
       {/* Header Section */}
       <header className="max-w-3xl mx-auto text-center mb-16 flex flex-col justify-center min-h-screen">
-        <h1 className="text-4xl font-bold text-[#B19CD9] mb-2">Peter Fung</h1>
-        <h2 className="text-xl mb-2">Software Engineer</h2>
-        <p className="text-gray-400">Crafting digital experiences through code</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-[#B19CD9] mb-2 tracking-tight">Peter Fung</h1>
+        <h2 className="text-xl md:text-2xl mb-2 font-light">Software Engineer</h2>
+        <p className="text-gray-400 text-lg font-light">Crafting digital experiences through code</p>
         <div className="mt-8">
           <ChevronDown className="w-8 h-8 mx-auto text-[#B19CD9]" />
         </div>
@@ -63,11 +63,11 @@ export default function PortfolioPage() {
 
       {/* About Me Section */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-semibold mb-6">About Me</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tight">About Me</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-[#B19CD9] mb-2">Software Engineering</h3>
-            <p className="text-gray-400">
+            <h3 className="text-[#B19CD9] text-xl font-medium mb-2">Software Engineering</h3>
+            <p className="text-gray-400 leading-relaxed">
               Passionate about creating elegant solutions to
               complex problems through innovative software
               development with a focus on modern web
@@ -75,8 +75,8 @@ export default function PortfolioPage() {
             </p>
           </div>
           <div>
-            <h3 className="text-[#B19CD9] mb-2">Visual Creation</h3>
-            <p className="text-gray-400">
+            <h3 className="text-[#B19CD9] text-xl font-medium mb-2">Visual Creation</h3>
+            <p className="text-gray-400 leading-relaxed">
               Blend creativity and logic into visual through my
               work, creating engaging digital experiences that
               people find truly memorable.
@@ -87,19 +87,19 @@ export default function PortfolioPage() {
 
       {/* Work Experience Section */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-semibold mb-6">Work Experience</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tight">Work Experience</h2>
         <Timeline items={companies} section="company" />
       </section>
 
       {/* Projects Section */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-semibold mb-6">Projects</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tight">Projects</h2>
         <Timeline items={projects} section="project" />
       </section>
 
       {/* Education Section */}
       <section className="max-w-3xl mx-auto mb-20">
-        <h2 className="text-2xl font-semibold mb-6">Education</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tight">Education</h2>
         <Timeline items={education} section="education" />
       </section>
 
@@ -122,15 +122,15 @@ export default function PortfolioPage() {
                 className="rounded-lg"
               />
               <div className="pl-4">
-                <h2 className="text-3xl font-semibold mb-2 text-[#B19CD9]">
+                <h2 className="text-2xl md:text-3xl font-semibold mb-2 text-[#B19CD9] tracking-tight">
                   {getSelectedItemDetails()?.title}
                 </h2>
-                <h3 className="text-xl text-gray-400">
+                <h3 className="text-lg md:text-xl text-gray-400 font-light">
                   {getSelectedItemDetails()?.time}
                 </h3>
               </div>
             </div>
-            <p className="text-gray-400 whitespace-pre-wrap">
+            <p className="text-gray-400 whitespace-pre-wrap leading-relaxed text-base md:text-lg">
               {getSelectedItemDetails()?.description}
             </p>
           </div>
@@ -139,55 +139,23 @@ export default function PortfolioPage() {
 
       {/* Interests Section */}
       <section className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6">Interests</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 tracking-tight">Interests</h2>
         <div className="grid grid-cols-2 gap-4">
-          {[
-            {
-              title: "Gaming",
-              images: [
-                "https://github.com/shadcn.png",
-                "https://github.com/shadcn.png",
-                // Add more image paths as needed
-              ]
-            },
-            {
-              title: "Drone Photography",
-              images: [
-                "https://github.com/shadcn.png",
-                "https://github.com/shadcn.png",
-                // Add more image paths as needed
-              ]
-            },
-            {
-              title: "Football",
-              images: [
-                "https://github.com/shadcn.png",
-                "https://github.com/shadcn.png",
-                // Add more image paths as needed
-              ]
-            },
-            {
-              title: "Frisbee",
-              images: [
-                "https://github.com/shadcn.png",
-                "https://github.com/shadcn.png",
-                // Add more image paths as needed 
-              ]
-            }
-          ].map((interest, index) => (
+          {interests.map((interest, index) => (
             <div
               key={index}
-              className="aspect-video relative overflow-hidden rounded-lg transition-transform hover:scale-105"
+              className="aspect-video relative overflow-hidden rounded-lg transition-transform hover:scale-105 group"
             >
-              {/* Display first image as default, can be enhanced to create image carousel */}
               <Image
                 src={interest.images[0] || "/placeholder.svg"}
                 alt={interest.title}
                 fill
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
-                <p className="text-white text-center">{interest.title}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <p className="text-white text-center text-sm md:text-base font-medium tracking-wide">
+                  {interest.title}
+                </p>
               </div>
             </div>
           ))}
