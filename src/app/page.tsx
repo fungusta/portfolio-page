@@ -75,11 +75,10 @@ export default function PortfolioPage() {
             </p>
           </div>
           <div>
-            <h3 className="text-[#B19CD9] text-xl font-medium mb-2">Visual Creation</h3>
+            <h3 className="text-[#B19CD9] text-xl font-medium mb-2">Photography</h3>
             <p className="text-gray-400 leading-relaxed">
-              Blend creativity and logic into visual through my
-              work, creating engaging digital experiences that
-              people find truly memorable.
+              I like to capture memories through my drone and camera, 
+              I am inspired by beautiful landscapes and unique natural wonders. 
             </p>
           </div>
         </div>
