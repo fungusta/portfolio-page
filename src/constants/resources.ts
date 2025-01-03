@@ -1,5 +1,3 @@
-import { get } from "http"
-
 const getImagePath = (path: string) => {
     const isProd = process.env.NODE_ENV === 'production'
     return isProd ? `/portfolio-page${path}` : path
