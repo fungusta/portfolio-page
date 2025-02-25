@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google'
 import "./globals.css";
+import { Nunito_Sans } from 'next/font/google'
 
-const inter = Inter({
+const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-nunito-sans', // This creates the CSS variable
 })
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={nunitoSans.className}>
       <body>{children}</body>
     </html>
   );
