@@ -6,7 +6,7 @@ import { EducationCard } from "@/components/education-card"
 
 export default function Page() {
   return (
-    <main className="min-h-screen px-60">
+    <main className="min-h-screen px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-4">
         <h1 className="text-4xl md:text-7xl font-bold text-secondary">Peter Fung</h1>
@@ -45,7 +45,7 @@ export default function Page() {
           <WorkExperienceCard
             company="Ryde Technologies"
             role="Software Engineering Intern"
-            logo="/images/ryde-logo.png"
+            logo="images/ryde-logo.png"
             techStack={[
               { name: "Javascript", icon: "images/tech-logos/javascript.svg" },
               { name: "WeChat", icon: "images/tech-logos/wechat-1.svg" },
@@ -55,7 +55,7 @@ export default function Page() {
           <WorkExperienceCard
             company="Economy-v1"
             role="Frontend Developer"
-            logo="/images/economy-v1-logo.png"
+            logo="images/economy-v1-logo.png"
             techStack={[
               { name: "Next.js", icon: "images/tech-logos/next-js.svg" },
               { name: "TypeScript", icon: "images/tech-logos/typescript.svg" },
@@ -66,13 +66,13 @@ export default function Page() {
           <WorkExperienceCard
             company="Cyber Security Agency of Singapore (CSA)"
             role="Mobile Cybersecurity Intern"
-            logo="/images/csa-logo.jpg"
+            logo="images/csa-logo.jpg"
             techStack={[{ name: "VMWare", icon: "images/tech-logos/vmware.svg" }]}
           />
           <WorkExperienceCard
             company="Witz-U"
             role="Mobile App Developer Intern"
-            logo="/images/witzu-logo.png"
+            logo="images/witzu-logo.png"
             techStack={[{ name: "Figma", icon: "images/tech-logos/figma.svg" },
             { name: "Flutter", icon: "images/tech-logos/flutter.svg" },
             ]}
@@ -80,7 +80,7 @@ export default function Page() {
           <WorkExperienceCard
             company="Dynamite Games"
             role="Software Engineer Intern"
-            logo="/images/dynamite-games-logo.png"
+            logo="images/dynamite-games-logo.png"
             techStack={[
               { name: "TypeScript", icon: "images/tech-logos/typescript.svg" },
               { name: "Telegram", icon: "images/tech-logos/telegram.svg" },
@@ -100,7 +100,7 @@ export default function Page() {
           <ProjectCard
             title="Stiks The Game"
             description="Unity Game"
-            logo="/images/sticks-logo.png"
+            logo="images/sticks-logo.png"
             techStack={[{ name: "Unity", icon: "images/tech-logos/unity.svg" },
             { name: "C Sharp", icon: "images/tech-logos/csharp.svg" }
             ]}
@@ -108,7 +108,7 @@ export default function Page() {
           <ProjectCard
             title="FABook"
             description="Digital address book for financial advisors"
-            logo="/images/FABook-logo.png"
+            logo="images/FABook-logo.png"
             techStack={[{ name: "Java", icon: "images/tech-logos/java.svg" }]}
           />
         </div>
@@ -120,15 +120,15 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <EducationCard
             school="National University of Singapore"
-            logo="/images/nus-logo.png"
+            logo="images/nus-logo.png"
           />
           <EducationCard
             school="Pioneer Junior College"
-            logo="/images/pjc-logo.jpg"
+            logo="images/pjc-logo.jpg"
           />
           <EducationCard
             school="Anglo-Chinese School (Primary)"
-            logo="/images/acs-logo.png"
+            logo="images/acs-logo.png"
           />
         </div>
       </section>
