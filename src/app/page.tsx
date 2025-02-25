@@ -32,7 +32,7 @@ export default function Page() {
               I enjoy exploring different UI design techniques, my current favourite: Neumorphism.
               <br></br>
               <br></br>
-              And when I am not coding, I explore unique ways to express my creative visions through my digital art works.
+              And when I am not coding, I enjoy taking beautiful landscapes using my camera and drone.
             </p>
           </Card>
         </div>
