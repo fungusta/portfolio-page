@@ -9,8 +9,8 @@ interface EducationCardProps {
 export function EducationCard({ school, logo }: EducationCardProps) {
   return (
     <OutdentCard className="aspect-square p-4 flex items-center justify-center">
-      <div className="w-full h-full relative">
-        <Image src={logo || "/placeholder.svg"} alt={`${school} logo`} fill className="object-contain p-2 rounded-2xl"/>
+      <div className="w-full h-full">
+        <Image src={logo || "/vercel.svg"} alt={`${school} logo`} fill className="object-contain p-2 rounded-2xl"/>
       </div>
     </OutdentCard>
   )

@@ -44,7 +44,7 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
   };
 
   return (
-    <div className="relative">
+    <div>
       <Card 
         className={`container-neumorphic-outset ${className} will-change-transform 
           ${isAnimating ? 'translate-y-1' : ''}`}
@@ -62,13 +62,13 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
         }}
         {...props}
       >
-        <div className="w-full" style={{ transform: 'none' }}>
+        <div style={{ transform: 'none' }}>
           {children}
         </div>
         
         {expandedContent && (
           <div 
-            className={`w-full overflow-hidden ${isExpanded ? 'mt-4 opacity-100' : 'opacity-0'}`}
+            className={`overflow-hidden ${isExpanded ? 'mt-4 opacity-100' : 'opacity-0'}`}
             style={{
               maxHeight: isExpanded ? '24rem' : '0',
               transition: 'max-height 300ms ease-in-out, opacity 300ms ease-in-out, margin 300ms ease-in-out'
