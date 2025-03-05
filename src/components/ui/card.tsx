@@ -44,10 +44,13 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
   };
 
   return (
-    <div className="transition-all duration-300">
+    <div className="relative">
       <Card 
-        className={`container-neumorphic-outset ${className} transition-all duration-300 ease-out
+        className={`container-neumorphic-outset ${className} will-change-transform 
           ${isAnimating ? 'translate-y-1' : ''}`}
+        style={{
+          transition: 'transform 300ms ease-out',
+        }}
         onClick={handleClick}
         role="button"
         tabIndex={0}
@@ -59,11 +62,17 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
         }}
         {...props}
       >
-        {children}
+        <div className="w-full" style={{ transform: 'none' }}>
+          {children}
+        </div>
         
         {expandedContent && (
           <div 
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+            className={`w-full overflow-hidden ${isExpanded ? 'mt-4 opacity-100' : 'opacity-0'}`}
+            style={{
+              maxHeight: isExpanded ? '24rem' : '0',
+              transition: 'max-height 300ms ease-in-out, opacity 300ms ease-in-out, margin 300ms ease-in-out'
+            }}
             aria-hidden={!isExpanded}
           >
             {expandedContent}

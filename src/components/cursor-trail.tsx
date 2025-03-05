@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface Trail {
   id: number;
@@ -10,11 +10,13 @@ interface Trail {
 
 const CursorTrail: React.FC = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
+  const idCounterRef = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Add a new trail element on every mouse move event
-      setTrails((prev) => [...prev, { id: Date.now(), x: e.clientX, y: e.clientY }]);
+      // Use a counter to ensure unique IDs
+      const newId = idCounterRef.current++;
+      setTrails((prev) => [...prev, { id: newId, x: e.clientX, y: e.clientY }]);
     };
 
     window.addEventListener('mousemove', handleMouseMove);

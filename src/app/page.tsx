@@ -49,9 +49,10 @@ export default function Page() {
             duration="Jun 2022 - Aug 2022"
             description="Developed and maintained WeChat Mini Programs for ride-hailing services, focusing on user experience and performance optimization."
             achievements={[
-              "Improved app loading time by 30% through code optimization",
-              "Implemented new payment integration with WeChat Pay",
-              "Collaborated with design team to revamp the user interface"
+              "Developed a secure one-on-one chat platform as a WeChat Mini Program using WXML, WXSS, and JavaScript.",
+              "Leveraged WeChat’s OAuth 2.0 for robust user authentication and integrated MongoDB to efficiently store and retrieve conversation histories.",
+              "Implemented real-time messaging with WebSockets, incorporating status indicators (sent, delivered, read) and push notifications to ensure instant and reliable communication.",
+              "Designed and developed lazy-loading functionality for older chats, enhancing user experience by reducing load times and maintaining interface responsiveness.",
             ]}
             techStack={[
               { name: "Javascript", icon: "images/tech-logos/javascript.svg" },
@@ -63,12 +64,10 @@ export default function Page() {
             company="Economy-v1"
             role="Frontend Developer"
             logo="images/economy-v1-logo.png"
-            duration="Jan 2022 - May 2022"
-            description="Built responsive web applications using modern frontend technologies, focusing on creating intuitive user interfaces and seamless user experiences."
+            duration="Oct 2024 - Dec 2024"
+            description="Built a responsive web application that integrates Bitcoin Lightning to empower clients in building and running AI agents."
             achievements={[
-              "Developed key features for the company's flagship product",
-              "Implemented responsive design principles for mobile compatibility",
-              "Reduced bundle size by 25% through code splitting and lazy loading"
+              "Utilized a modern tech stack including Next.js, TypeScript, React, and Tailwind CSS to create efficient, scalable, and user-friendly interfaces.",
             ]}
             techStack={[
               { name: "Next.js", icon: "images/tech-logos/next-js.svg" },
@@ -81,12 +80,13 @@ export default function Page() {
             company="Cyber Security Agency of Singapore (CSA)"
             role="Mobile Cybersecurity Intern"
             logo="images/csa-logo.jpg"
-            duration="May 2021 - Aug 2021"
-            description="Conducted security assessments on mobile applications and developed tools to automate vulnerability detection processes."
+            duration="Dec 2023 - Mar 2024"
+            description="Pioneered a comprehensive evaluation of mobile antivirus solutions on iOS and Android for the general public."
             achievements={[
-              "Identified critical vulnerabilities in government mobile applications",
-              "Created documentation for secure mobile development practices",
-              "Participated in security awareness training programs"
+              "Conducted in-depth research and testing on 20 antivirus applications across iOS and Android platforms.",
+              "Developed a comprehensive grading scheme to assess the effectiveness of each application in safeguarding users against identified threats.",
+              "Presented findings to senior cyber security professionals, influencing decisions on future security enhancements.",
+              "Utilized Kali Linux for secure storage of malware samples used in mobile antivirus testing.",
             ]}
             techStack={[{ name: "VMWare", icon: "images/tech-logos/vmware.svg" }]}
           />
@@ -94,11 +94,11 @@ export default function Page() {
             company="Witz-U"
             role="Mobile App Developer Intern"
             logo="images/witzu-logo.png"
-            duration="Jan 2021 - Apr 2021"
+            duration="May 2023 - Aug 2023"
             description="Designed and developed mobile applications using Flutter framework, focusing on cross-platform compatibility and user experience."
             achievements={[
-              "Created UI/UX designs for educational mobile applications",
-              "Implemented cross-platform features using Flutter",
+              "Created UI/UX designs for witz-u's mobile applications",
+              "Implemented a feed like interface for users to view and interact with content",
               "Collaborated with backend team for API integration"
             ]}
             techStack={[{ name: "Figma", icon: "images/tech-logos/figma.svg" },
@@ -109,12 +109,11 @@ export default function Page() {
             company="Dynamite Games"
             role="Software Engineer Intern"
             logo="images/dynamite-games-logo.png"
-            duration="May 2020 - Aug 2020"
-            description="Developed game features and tools using TypeScript, focusing on performance optimization and user engagement."
+            duration="Dec 2022 - Jan 2023"
+            description= "Developed an automated broadcast Telegram bot capable of broadcasting messages to multiple groups simultaneously."
             achievements={[
-              "Implemented new game mechanics that increased user retention by 15%",
-              "Optimized rendering pipeline for better performance on mobile devices",
-              "Created developer tools to streamline content creation process"
+              "Ensured continuous 24/7 uptime of the bot through Google Apps Script integration.",
+              "Enabled targeted alert distribution to multiple audiences, enhancing internal communication and ensuring timely delivery of critical notifications.",
             ]}
             techStack={[
               { name: "TypeScript", icon: "images/tech-logos/typescript.svg" },
