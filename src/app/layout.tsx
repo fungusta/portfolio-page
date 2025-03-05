@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Nunito_Sans } from 'next/font/google'
+import CursorTrail from '../components/cursor-trail'
 
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={nunitoSans.className}>
-      <body>{children}</body>
+      <body>
+        <CursorTrail />
+        {children}
+      </body>
     </html>
   );
 }

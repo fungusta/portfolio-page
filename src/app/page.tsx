@@ -46,6 +46,13 @@ export default function Page() {
             company="Ryde Technologies"
             role="Software Engineering Intern"
             logo="images/ryde-logo.png"
+            duration="Jun 2022 - Aug 2022"
+            description="Developed and maintained WeChat Mini Programs for ride-hailing services, focusing on user experience and performance optimization."
+            achievements={[
+              "Improved app loading time by 30% through code optimization",
+              "Implemented new payment integration with WeChat Pay",
+              "Collaborated with design team to revamp the user interface"
+            ]}
             techStack={[
               { name: "Javascript", icon: "images/tech-logos/javascript.svg" },
               { name: "WeChat", icon: "images/tech-logos/wechat-1.svg" },
@@ -56,6 +63,13 @@ export default function Page() {
             company="Economy-v1"
             role="Frontend Developer"
             logo="images/economy-v1-logo.png"
+            duration="Jan 2022 - May 2022"
+            description="Built responsive web applications using modern frontend technologies, focusing on creating intuitive user interfaces and seamless user experiences."
+            achievements={[
+              "Developed key features for the company's flagship product",
+              "Implemented responsive design principles for mobile compatibility",
+              "Reduced bundle size by 25% through code splitting and lazy loading"
+            ]}
             techStack={[
               { name: "Next.js", icon: "images/tech-logos/next-js.svg" },
               { name: "TypeScript", icon: "images/tech-logos/typescript.svg" },
@@ -67,12 +81,26 @@ export default function Page() {
             company="Cyber Security Agency of Singapore (CSA)"
             role="Mobile Cybersecurity Intern"
             logo="images/csa-logo.jpg"
+            duration="May 2021 - Aug 2021"
+            description="Conducted security assessments on mobile applications and developed tools to automate vulnerability detection processes."
+            achievements={[
+              "Identified critical vulnerabilities in government mobile applications",
+              "Created documentation for secure mobile development practices",
+              "Participated in security awareness training programs"
+            ]}
             techStack={[{ name: "VMWare", icon: "images/tech-logos/vmware.svg" }]}
           />
           <WorkExperienceCard
             company="Witz-U"
             role="Mobile App Developer Intern"
             logo="images/witzu-logo.png"
+            duration="Jan 2021 - Apr 2021"
+            description="Designed and developed mobile applications using Flutter framework, focusing on cross-platform compatibility and user experience."
+            achievements={[
+              "Created UI/UX designs for educational mobile applications",
+              "Implemented cross-platform features using Flutter",
+              "Collaborated with backend team for API integration"
+            ]}
             techStack={[{ name: "Figma", icon: "images/tech-logos/figma.svg" },
             { name: "Flutter", icon: "images/tech-logos/flutter.svg" },
             ]}
@@ -81,15 +109,18 @@ export default function Page() {
             company="Dynamite Games"
             role="Software Engineer Intern"
             logo="images/dynamite-games-logo.png"
+            duration="May 2020 - Aug 2020"
+            description="Developed game features and tools using TypeScript, focusing on performance optimization and user engagement."
+            achievements={[
+              "Implemented new game mechanics that increased user retention by 15%",
+              "Optimized rendering pipeline for better performance on mobile devices",
+              "Created developer tools to streamline content creation process"
+            ]}
             techStack={[
               { name: "TypeScript", icon: "images/tech-logos/typescript.svg" },
               { name: "Telegram", icon: "images/tech-logos/telegram.svg" },
               { name: "Google Sheets", icon: "images/tech-logos/google-sheets.svg" }]}
           />
-
-
-
-
         </div>
       </section>
 
@@ -124,7 +155,7 @@ export default function Page() {
           />
           <EducationCard
             school="Pioneer Junior College"
-            logo="images/pjc-logo.jpg"
+            logo="images/pjc-logo.png"
           />
           <EducationCard
             school="Anglo-Chinese School (Primary)"

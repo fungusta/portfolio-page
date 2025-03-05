@@ -1,16 +1,53 @@
 import Image from "next/image"
-import { Card } from "@/components/ui/card"
+import { OutdentCard } from "@/components/ui/card"
 
 interface WorkExperienceCardProps {
   company: string
   role: string
   logo: string
   techStack?: { name: string; icon: string }[]
+  description?: string
+  duration?: string
+  achievements?: string[]
 }
 
-export function WorkExperienceCard({ company, role, logo, techStack = [] }: WorkExperienceCardProps) {
+export function WorkExperienceCard({ 
+  company, 
+  role, 
+  logo, 
+  techStack = [], 
+  description, 
+  duration, 
+  achievements = [] 
+}: WorkExperienceCardProps) {
+  
+  const expandedContent = (description || duration || achievements.length > 0) ? (
+    <div className="space-y-4">
+      {duration && (
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-primary/70">{duration}</span>
+        </div>
+      )}
+      
+      {description && (
+        <p className="text-primary/80">{description}</p>
+      )}
+      
+      {achievements.length > 0 && (
+        <div className="space-y-2">
+          <h4 className="text-sm font-semibold text-secondary">Key Achievements</h4>
+          <ul className="list-disc list-inside space-y-1">
+            {achievements.map((achievement, index) => (
+              <li key={index} className="text-sm text-primary/80">{achievement}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  ) : undefined;
+
   return (
-    <Card className="p-6 container-neumorphic-outset">
+    <OutdentCard className="p-6" expandedContent={expandedContent}>
       <div className="flex items-start gap-4">
         <div className="w-14 h-14 relative shrink-0">
           <Image src={logo || "/placeholder.svg"} alt={`${company} logo`} fill className="object-contain rounded-xl" />
@@ -38,7 +75,7 @@ export function WorkExperienceCard({ company, role, logo, techStack = [] }: Work
           ))}
         </div>
       </div>
-    </Card>
+    </OutdentCard>
   )
 }
 

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Card } from "@/components/ui/card"
+import { OutdentCard } from "@/components/ui/card"
 
 interface ProjectCardProps {
   title: string
@@ -10,7 +10,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, logo, techStack = [] }: ProjectCardProps) {
   return (
-    <Card className="p-6 container-neumorphic-outset">
+    <OutdentCard className="p-6">
       <div className="flex items-start gap-4">
         <div className="w-14 h-14 relative shrink-0">
           <Image src={logo || "/placeholder.svg"} alt={`${title} logo`} fill className="object-contain" />
@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, logo, techStack = [] }: Projec
           ))}
         </div>
       </div>
-    </Card>
+    </OutdentCard>
   )
 }
 
