@@ -46,7 +46,7 @@ export default function Page() {
             company="Ryde Technologies"
             role="Software Engineering Intern"
             logo="images/ryde-logo.png"
-            duration="Jun 2022 - Aug 2022"
+            duration="Jan 2025 - Present"
             description="Developed and maintained WeChat Mini Programs for ride-hailing services, focusing on user experience and performance optimization."
             achievements={[
               "Developed a secure one-on-one chat platform as a WeChat Mini Program using WXML, WXSS, and JavaScript.",
