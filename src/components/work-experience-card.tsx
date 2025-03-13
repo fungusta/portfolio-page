@@ -37,10 +37,10 @@ export function WorkExperienceCard({
       
       {achievements.length > 0 && (
         <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs sm:text-sm font-semibold text-secondary">Key Achievements</h4>
+          <h4 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-secondary">Key Achievements</h4>
           <ul className="list-disc list-inside space-y-0.5 sm:space-y-1">
             {achievements.map((achievement, index) => (
-              <li key={index} className="text-xs sm:text-sm text-primary/80">{achievement}</li>
+              <li key={index} className="text-xs sm:text-sm md:text-base text-primary/80">{achievement}</li>
             ))}
           </ul>
         </div>
@@ -95,8 +95,9 @@ export function WorkExperienceCard({
                 <Image 
                   src={tech.icon}
                   alt={tech.name}
-                  fill
-                  className="object-contain"
+                  width={100}
+                  height={100}
+                  className="object-contain w-full h-full"
                 />
               </div>
             </a>
