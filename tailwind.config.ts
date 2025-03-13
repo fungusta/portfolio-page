@@ -72,7 +72,7 @@ const config: Config = {
           backgroundColor: theme("colors.background"),
           borderRadius: theme("borderRadius.xl"),
           boxShadow:
-            "0px 6px 12px 0px rgba(189, 182, 214, 0.5), 0px 2px 3px 0px rgba(255, 255, 255, 0.8), 0px -1px 2px 0px rgba(189, 182, 214, 0.2)",
+            "0px 8px 16px 0px rgba(189, 182, 214, 0.7), 0px 3px 5px 0px rgba(255, 255, 255, 0.9), 0px -2px 4px 0px rgba(189, 182, 214, 0.4)",
           transition: "all 0.3s ease-out"
         },
 
@@ -82,13 +82,13 @@ const config: Config = {
           backgroundColor: theme("colors.background"),
           borderRadius: theme("borderRadius.xl"),
           boxShadow:
-            "inset 0px 6px 12px 0px rgba(189, 182, 214, 0.5), inset 0px 2px 3px 0px rgba(255, 255, 255, 0.8), inset 0px -1px 2px 0px rgba(189, 182, 214, 0.2)",
+            "inset 0px 8px 16px 0px rgba(189, 182, 214, 0.7), inset 0px 3px 5px 0px rgba(255, 255, 255, 0.9), inset 0px -2px 4px 0px rgba(189, 182, 214, 0.4)",
           transition: "all 0.3s ease-out"
         },
 
         ".container-neumorphic-outset:hover": {
           boxShadow:
-            "0px 4px 8px 0px rgba(189, 182, 214, 0.4), 0px 1px 2px 0px rgba(255, 255, 255, 0.7)",
+            "0px 6px 12px 0px rgba(189, 182, 214, 0.6), 0px 2px 3px 0px rgba(255, 255, 255, 0.8)",
           transition: "all 0.3s ease-out"
         },
 

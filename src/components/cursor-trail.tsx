@@ -58,7 +58,7 @@ const CursorTrail: React.FC = () => {
             left: trail.x - 20, 
             top: trail.y - 20,   
             animation: 'fadeOut 0.5s forwards',
-            zIndex: 1000,
+            zIndex: -1,
           }}
         />
       ))}

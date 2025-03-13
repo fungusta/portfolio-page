@@ -22,7 +22,17 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Check if the click target is or is contained within an anchor tag
+    const target = e.target as HTMLElement;
+    const isLinkClick = target.tagName === 'A' || target.closest('a');
+    
+    // If it's a link click, don't expand the card
+    if (isLinkClick) {
+      if (onClick) onClick();
+      return;
+    }
+    
     if (!expandedContent) {
       if (onClick) onClick();
       return;
@@ -47,17 +57,14 @@ export function OutdentCard({ className, children, onClick, expandedContent, ...
     <div>
       <Card 
         className={`container-neumorphic-outset ${className} will-change-transform 
-          ${isAnimating ? 'translate-y-1' : ''}`}
-        style={{
-          transition: 'transform 300ms ease-out',
-        }}
+          ${isAnimating ? 'translate-y-1' : ''} transform 300ms ease-out`}
         onClick={handleClick}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            handleClick();
+            handleClick(e as unknown as React.MouseEvent<HTMLDivElement>);
           }
         }}
         {...props}
