@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { WorkExperienceCard } from "@/components/work-experience-card"
 import { ProjectCard } from "@/components/project-card"
-import { EducationCard } from "@/components/education-card"
+// import { EducationCard } from "@/components/education-card"
 import { ProfileImageCarousel } from "@/components/profile-image-carousel"
 
 export default function Page() {

@@ -11,7 +11,6 @@ interface MediaOverlayProps {
 
 export function MediaOverlay({ mediaUrl, isVisible, mediaType = "video" }: MediaOverlayProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [mediaDimensions, setMediaDimensions] = useState({ width: 0, height: 0 });
@@ -63,13 +62,14 @@ export function MediaOverlay({ mediaUrl, isVisible, mediaType = "video" }: Media
     }
   }, [isVisible, isPlaying, mediaType]);
 
-  // Preload the video when component mounts
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
-      // Cleanup on unmount
-      if (mediaType === "video" && videoRef.current && isPlaying) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
+      // Store the current video reference to avoid the React hooks exhaustive-deps warning
+      const currentVideo = videoRef.current;
+      if (mediaType === "video" && currentVideo && isPlaying) {
+        currentVideo.pause();
+        currentVideo.currentTime = 0;
       }
     };
   }, [isPlaying, mediaType]);
