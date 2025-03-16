@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image"
 import { OutdentCard } from "@/components/ui/card"
 
@@ -48,63 +50,87 @@ export function WorkExperienceCard({
     </div>
   ) : null;
 
-  return (
-    <OutdentCard className="p-4 sm:p-6" expandedContent={expandedContent}>
-      <div className="flex items-start gap-3 sm:gap-4">
-        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 relative shrink-0 transition-transform duration-300 ease-in-out hover:scale-110">
-          {link ? (
-            <a 
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-full"
-              aria-label={`Visit ${company} website`}
-              tabIndex={0}
-            >
-              <Image 
-                src={logo || "/placeholder.svg"} 
-                alt={`${company} logo`} 
-                fill 
-                className="object-contain rounded-xl" 
-              />
-            </a>
-          ) : (
+  const TechStackIcons = () => (
+    <div className="flex gap-1 sm:gap-2 flex-wrap justify-end">
+      {techStack.map((tech) => (
+        <button 
+          key={tech.name} 
+          onClick={(e) => {
+            e.stopPropagation();
+            if (tech.link) window.open(tech.link, "_blank", "noopener,noreferrer");
+          }}
+          className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 relative rounded-xl transition-all duration-300 ease-in-out hover:scale-110 hover:opacity-80" 
+          title={tech.name}
+          aria-label={tech.name}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              if (tech.link) window.open(tech.link, "_blank", "noopener,noreferrer");
+            }
+          }}
+        >
+          <div className="absolute inset-0.5 sm:inset-1 md:inset-1.5">
             <Image 
-              src={logo || "/placeholder.svg"} 
-              alt={`${company} logo`} 
-              fill 
-              className="object-contain rounded-xl" 
+              src={tech.icon}
+              alt={tech.name}
+              fill
+              className="object-contain"
             />
-          )}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+
+  const CompanyLogo = () => (
+    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 relative shrink-0 transition-transform duration-300 ease-in-out hover:scale-110">
+      {link ? (
+        <button
+          onClick={() => window.open(link, "_blank", "noopener,noreferrer")}
+          className="w-full h-full"
+          title={`Visit ${company} website`}
+          aria-label={`Visit ${company} website (opens in a new tab)`}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              window.open(link, "_blank", "noopener,noreferrer");
+            }
+          }}
+        >
+          <Image 
+            src={logo || "/placeholder.svg"} 
+            alt={`${company} logo`} 
+            fill 
+            className="object-contain rounded-xl" 
+          />
+        </button>
+      ) : (
+        <Image 
+          src={logo || "/placeholder.svg"} 
+          alt={`${company} logo`} 
+          fill 
+          className="object-contain rounded-xl" 
+        />
+      )}
+    </div>
+  );
+
+  return (
+    <div className="transition-transform duration-300 ease-in-out hover:scale-[1.02]">
+      <OutdentCard className="p-4 sm:p-6" expandedContent={expandedContent}>
+        <div className="flex items-start gap-3 sm:gap-4">
+          <CompanyLogo />
+          <div className="flex-1">
+            <h3 className="text-base sm:text-lg md:text-xl text-secondary">{company}</h3>
+            <p className="text-xs sm:text-sm md:text-base text-primary/80">{role}</p>
+          </div>
+          <TechStackIcons />
         </div>
-        <div className="flex-1">
-          <h3 className="text-base sm:text-lg md:text-xl text-secondary">{company}</h3>
-          <p className="text-xs sm:text-sm md:text-base text-primary/80">{role}</p>
-        </div>
-        <div className="flex gap-1 sm:gap-2 flex-wrap justify-end">
-          {techStack.map((tech) => (
-            <a 
-              key={tech.name} 
-              href={tech.link}
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 relative rounded-xl transition-all duration-300 ease-in-out hover:scale-110 hover:opacity-80" 
-              title={tech.name}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="absolute inset-0.5 sm:inset-1 md:inset-1.5">
-                <Image 
-                  src={tech.icon}
-                  alt={tech.name}
-                  width={100}
-                  height={100}
-                  className="object-contain w-full h-full"
-                />
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </OutdentCard>
+      </OutdentCard>
+    </div>
   )
 }
 

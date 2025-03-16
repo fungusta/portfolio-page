@@ -2,38 +2,12 @@
 
 import Image from "next/image"
 import { OutdentCard } from "@/components/ui/card"
-import { useState, useEffect } from "react"
-import { MediaOverlay } from "@/components/media-overlay"
-
-// Custom hook to detect if the device is mobile
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768); // Consider devices with width less than 768px as mobile
-    };
-    
-    // Check on initial load
-    checkIfMobile();
-    
-    // Add event listener for window resize
-    window.addEventListener('resize', checkIfMobile);
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
-  
-  return isMobile;
-};
 
 interface ProjectCardProps {
   title: string
   description: string
   logo: string
   link?: string
-  videoUrl?: string
-  imageUrl?: string
   techStack?: { name: string; icon: string; link?: string }[]
 }
 
@@ -42,26 +16,8 @@ export function ProjectCard({
   description, 
   logo, 
   link, 
-  videoUrl, 
-  imageUrl,
   techStack = [] 
 }: ProjectCardProps) {
-  const [showMedia, setShowMedia] = useState(false);
-  const isMobile = useIsMobile();
-  
-  // Determine media type and URL
-  const mediaUrl = videoUrl || imageUrl;
-  const mediaType = videoUrl ? "video" : "image";
-
-  const handleMouseEnter = () => {
-    if (mediaUrl && !isMobile) {
-      setShowMedia(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setShowMedia(false);
-  };
 
   const handleCardClick = () => {
     if (link) {
@@ -127,8 +83,6 @@ export function ProjectCard({
     <>
       <div 
         className={`transition-transform duration-300 ease-in-out hover:scale-[1.02] ${link ? 'cursor-pointer group relative' : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         onClick={handleCardClick}
         onKeyDown={handleCardKeyDown}
         role={link ? "link" : "presentation"}
@@ -147,7 +101,6 @@ export function ProjectCard({
           )}
         </OutdentCard>
       </div>
-      {mediaUrl && !isMobile && <MediaOverlay mediaUrl={mediaUrl} mediaType={mediaType} isVisible={showMedia} />}
     </>
   );
 }

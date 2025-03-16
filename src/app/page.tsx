@@ -146,7 +146,6 @@ export default function Page() {
             description="Digital address book for financial advisors"
             logo="images/FABook-logo.png"
             link="https://github.com/fungusta/FABook"
-            imageUrl="images/FABook-UI.png"
             techStack={[{ name: "Java", icon: "images/tech-logos/java.svg", link: "https://www.java.com/" }]}
           />
           <ProjectCard
@@ -154,7 +153,6 @@ export default function Page() {
             description="Unity Game"
             logo="images/sticks-logo.png"
             link="https://github.com/fungusta/StiksTheGame"
-            videoUrl="videos/Stiks.mp4"
             techStack={[{ name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },
             { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" }
             ]}
