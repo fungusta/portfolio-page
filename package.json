@@ -1,15 +1,15 @@
 {
-  "homepage": "https://fungusta.github.io/portfolio-page",
+  "homepage": "https://peterjosephfung.com",
   "private": true,
   "name": "portfolio-page",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cp public/CNAME out/",
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out --dotfiles true"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",

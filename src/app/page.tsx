@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, Linkedin, Github, Mail } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { WorkExperienceCard } from "@/components/work-experience-card"
 import { ProjectCard } from "@/components/project-card"
@@ -181,6 +181,39 @@ export default function Page() {
 
       {/* Footer */}
       <footer className="py-6 sm:py-8 text-center text-sm sm:text-base text-primary/60">
+        <div className="mb-6">
+          <h2 className="text-xl font-bold mb-4 text-secondary">Contact Me</h2>
+          <div className="flex justify-center space-x-6">
+            <a 
+              href="https://linkedin.com/in/peterjosephfung" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              aria-label="LinkedIn Profile"
+              tabIndex={0}
+            >
+              <Linkedin size={24} />
+            </a>
+            <a 
+              href="https://github.com/fungusta" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              aria-label="GitHub Profile"
+              tabIndex={0}
+            >
+              <Github size={24} />
+            </a>
+            <a 
+              href="mailto:peterjosephfung@gmail.com" 
+              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              aria-label="Email Me"
+              tabIndex={0}
+            >
+              <Mail size={24} />
+            </a>
+          </div>
+        </div>
         <p>🚧 This website is still under construction 🚧</p>
       </footer>
     </main>
