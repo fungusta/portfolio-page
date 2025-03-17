@@ -31,7 +31,7 @@ export function ProfileImageCarousel({ images, interval, alt }: ProfileImageCaro
           src={src}
           alt={`${alt} ${index + 1}`}
           fill
-          className={`object-cover transition-opacity duration-1000 ${
+          className={`object-cover transition-opacity duration-700 ${
             index === currentImageIndex ? "opacity-100" : "opacity-0"
           }`}
           priority={index === 0}

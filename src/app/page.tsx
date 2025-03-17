@@ -7,7 +7,7 @@ import { ProfileImageCarousel } from "@/components/profile-image-carousel"
 
 export default function Page() {
   return (
-    <main className="min-h-screen px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
+    <main className="px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-4">
         <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 relative rounded-full overflow-hidden mb-6 border-4 border-secondary/20 shadow-lg">
@@ -150,7 +150,7 @@ export default function Page() {
           />
           <ProjectCard
             title="Stiks The Game"
-            description="Unity Game"
+            description="2D hack-and-slash platformer"
             logo="images/sticks-logo.png"
             link="https://github.com/fungusta/StiksTheGame"
             techStack={[{ name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },

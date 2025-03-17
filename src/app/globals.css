@@ -19,3 +19,7 @@ body {
   background: var(--background);
   font-family: Nunito Sans, Arial, Helvetica, sans-serif;
 }
+
+svg {
+  shape-rendering: geometricPrecision;
+}
