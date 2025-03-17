@@ -58,10 +58,8 @@ export default function Page() {
             duration="Jan 2025 - Present"
             description="Developed and maintained WeChat Mini Programs for ride-hailing services, focusing on user experience and performance optimization."
             achievements={[
-              "Built secure one-on-one chat platform as WeChat Mini Program",
-              "Implemented OAuth 2.0 authentication and MongoDB integration",
-              "Added real-time messaging with WebSockets and status indicators",
-              "Designed lazy-loading for older chats to improve performance",
+              "Built a secure one-on-one chat platform within WeChat Mini Program",
+              "Implemented end to end calling between WeChat Mini Program and Ryde's Driver App"
             ]}
             techStack={[
               { name: "Javascript", icon: "images/tech-logos/javascript.svg", link: "https://www.javascript.com/" },
@@ -77,8 +75,7 @@ export default function Page() {
             duration="Oct 2024 - Dec 2024"
             description="Built a responsive web application that integrates Bitcoin Lightning to empower clients in building and running AI agents."
             achievements={[
-              "Created efficient interfaces with Next.js, TypeScript, React, and Tailwind CSS",
-              "Developed Bitcoin Lightning integration for AI agent platform"
+              "Developed Bitcoin Lightning integration for AI agent platform for clients to build and run AI agents"
             ]}
             techStack={[
               { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
@@ -97,7 +94,6 @@ export default function Page() {
             achievements={[
               "Tested 20 antivirus apps across iOS and Android platforms",
               "Developed grading scheme to assess effectiveness against threats",
-              "Presented findings to senior cyber security professionals",
               "Used Kali Linux for secure malware sample storage",
             ]}
             techStack={[{ name: "VMWare", icon: "images/tech-logos/vmware.svg", link: "https://www.vmware.com/" }]}
@@ -110,9 +106,7 @@ export default function Page() {
             duration="May 2023 - Aug 2023"
             description="Designed and developed mobile applications using Flutter framework, focusing on cross-platform compatibility and user experience."
             achievements={[
-              "Designed UI/UX for mobile applications",
-              "Built feed interface with Flutter",
-              "Integrated backend APIs"
+              "Built feed page for users to view and interact with posts"
             ]}
             techStack={[{ name: "Figma", icon: "images/tech-logos/figma.svg", link: "https://www.figma.com/" },
             { name: "Flutter", icon: "images/tech-logos/flutter.svg", link: "https://flutter.dev/" },

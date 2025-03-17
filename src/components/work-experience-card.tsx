@@ -24,7 +24,7 @@ export function WorkExperienceCard({
   achievements = [],
   link
 }: WorkExperienceCardProps) {
-  
+
   const expandedContent = (description || duration || achievements.length > 0) ? (
     <div className="space-y-3 sm:space-y-4">
       {duration && (
