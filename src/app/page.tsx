@@ -11,9 +11,9 @@ export default function Page() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-4">
         <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 relative rounded-full overflow-hidden mb-6 border-4 border-secondary/20 shadow-lg">
-          <ProfileImageCarousel 
-            images={["images/headshot.jpg", "images/casualshot.jpg", "images/drone.jpeg"]} 
-            interval={3000} 
+          <ProfileImageCarousel
+            images={["images/headshot.jpg", "images/casualshot.jpg", "images/drone.jpeg"]}
+            interval={3000}
             alt="Peter Fung profile photo"
           />
         </div>
@@ -118,7 +118,7 @@ export default function Page() {
             logo="images/dynamite-games-logo.png"
             link="https://www.dynamitegames.io/"
             duration="Dec 2022 - Jan 2023"
-            description= "Developed an automated broadcast Telegram bot capable of broadcasting messages to multiple groups simultaneously."
+            description="Developed an automated broadcast Telegram bot capable of broadcasting messages to multiple groups simultaneously."
             achievements={[
               "Ensured 24/7 uptime through Google Apps Script integration",
               "Implemented targeted alerts to multiple audience groups"
@@ -132,7 +132,7 @@ export default function Page() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-12 sm:py-16 px-4 md:px-8 max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 px-4 md:px-8 max-w-6xl mx-auto space-y-6">
         <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-secondary">Projects</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <ProjectCard
@@ -140,18 +140,38 @@ export default function Page() {
             description="Digital address book for financial advisors"
             logo="images/FABook-logo.png"
             link="https://github.com/fungusta/FABook"
-            techStack={[{ name: "Java", icon: "images/tech-logos/java.svg", link: "https://www.java.com/" }]}
+            coreStack={[{ name: "Java", icon: "images/tech-logos/java.svg", link: "https://www.java.com/" }]}
           />
           <ProjectCard
             title="Stiks The Game"
             description="2D hack-and-slash platformer"
             logo="images/sticks-logo.png"
             link="https://github.com/fungusta/StiksTheGame"
-            techStack={[{ name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },
-            { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" }
+            coreStack={[
+              { name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },
+              { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" }
             ]}
           />
         </div>
+          <ProjectCard
+            title="HomeCooked"
+            description="Recipe storage platform for home cooks"
+            logo="images/homecooked-logo.png"
+            link="https://home-cooked-gamma.vercel.app/"
+            coreStack={[
+              { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+              { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
+              { name: "TypeScript", icon: "images/tech-logos/typescript.svg", link: "https://www.typescriptlang.org/" },
+              { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
+              { name: "Tailwind", icon: "images/tech-logos/tailwind-css.svg", link: "https://tailwindcss.com/" },
+            ]}
+            infraServices={[
+              { name: "Supabase", link: "https://supabase.com/" },
+              { name: "MySQL", link: "https://www.mysql.com/" },
+              { name: "Azure", link: "https://azure.microsoft.com/" },
+              { name: "Vercel", link: "https://vercel.com/" }
+            ]}
+        />
       </section>
 
       {/* Education Section
@@ -178,9 +198,9 @@ export default function Page() {
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-4 text-secondary">Contact Me</h2>
           <div className="flex justify-center space-x-6">
-            <a 
-              href="https://linkedin.com/in/peterjosephfung" 
-              target="_blank" 
+            <a
+              href="https://linkedin.com/in/peterjosephfung"
+              target="_blank"
               rel="noopener noreferrer"
               className="transition-all duration-300 hover:text-primary hover:scale-110"
               aria-label="LinkedIn Profile"
@@ -188,9 +208,9 @@ export default function Page() {
             >
               <Linkedin size={24} />
             </a>
-            <a 
-              href="https://github.com/fungusta" 
-              target="_blank" 
+            <a
+              href="https://github.com/fungusta"
+              target="_blank"
               rel="noopener noreferrer"
               className="transition-all duration-300 hover:text-primary hover:scale-110"
               aria-label="GitHub Profile"
@@ -198,8 +218,8 @@ export default function Page() {
             >
               <Github size={24} />
             </a>
-            <a 
-              href="mailto:peterjosephfung@gmail.com" 
+            <a
+              href="mailto:peterjosephfung@gmail.com"
               className="transition-all duration-300 hover:text-primary hover:scale-110"
               aria-label="Email Me"
               tabIndex={0}
