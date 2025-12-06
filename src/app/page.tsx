@@ -155,7 +155,7 @@ export default function Page() {
         </div>
           <ProjectCard
             title="HomeCooked"
-            description="Recipe storage platform for home cooks"
+            description="HomeCooked saves your recipes and instantly converts website or Instagram posts into clean, usable cooking instructions."
             logo="images/homecooked-logo.png"
             link="https://home-cooked-gamma.vercel.app/"
             coreStack={[
@@ -172,26 +172,23 @@ export default function Page() {
               { name: "Vercel", link: "https://vercel.com/" }
             ]}
         />
+        <ProjectCard
+            title="RainOracle"
+            description="A fast, one-button weather app built to provide immediate weather forecasts"
+            logo="images/rain-oracle-logo.png"
+            link="https://rain-oracle-nu.vercel.app/"
+            coreStack={[
+              { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+              { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
+              { name: "TypeScript", icon: "images/tech-logos/typescript.svg", link: "https://www.typescriptlang.org/" },
+              { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
+              { name: "Tailwind", icon: "images/tech-logos/tailwind-css.svg", link: "https://tailwindcss.com/" },
+            ]}
+            infraServices={[
+              { name: "Vercel", link: "https://vercel.com/" }
+            ]}
+        />
       </section>
-
-      {/* Education Section
-      <section className="py-16 px-4 md:px-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold mb-8 text-secondary">Education</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <EducationCard
-            school="National University of Singapore"
-            logo="images/nus-logo.png"
-          />
-          <EducationCard
-            school="Pioneer Junior College"
-            logo="images/pjc-logo.png"
-          />
-          <EducationCard
-            school="Anglo-Chinese School (Primary)"
-            logo="images/acs-logo.png"
-          />
-        </div>
-      </section> */}
 
       {/* Footer */}
       <footer className="py-6 sm:py-8 text-center text-sm sm:text-base text-primary/60">
@@ -228,7 +225,6 @@ export default function Page() {
             </a>
           </div>
         </div>
-        <p>🚧 This website is still under construction 🚧</p>
       </footer>
     </main>
   )
