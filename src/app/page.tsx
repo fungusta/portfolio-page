@@ -50,12 +50,30 @@ export default function Page() {
       <section className="py-12 sm:py-16 px-4 md:px-8 max-w-6xl mx-auto">
         <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-secondary">Work Experience</h2>
         <div className="space-y-4">
+        <WorkExperienceCard
+            company="NCS"
+            role="Software Engineer"
+            logo="images/ncs-logo.png"
+            link="https://www.ncs.co/en-sg/"
+            duration="Sept 2025 - Present"
+            description="Building an internal AI productivity tool at NCS to improve how teams access knowledge and complete tasks."
+            achievements={[
+              "Enhanced LLM orchestration flow with multi-provider support (OpenAI & Anthropic), improving model switching flexibility with latest models.",
+              "Designed and shipped agent workflows that streamlined internal knowledge retrieval, reducing average query resolution time."
+            ]}
+            techStack={[
+              { name: "Python", icon: "images/tech-logos/python.svg", link: "https://www.python.org/" },
+              { name: "PostgreSQL", icon: "images/tech-logos/postgresql.svg", link: "https://www.postgresql.org/" },
+              { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+              { name: "Langfuse", icon: "images/tech-logos/langfuse.svg", link: "https://langfuse.com/" },
+            ]}
+          />
           <WorkExperienceCard
             company="Ryde"
             role="Software Engineering Intern"
             logo="images/ryde-logo.png"
             link="https://rydesharing.com/"
-            duration="Jan 2025 - Present"
+            duration="Jan 2025 - June 2025"
             description="Developed and maintained WeChat Mini Programs for ride-hailing services, focusing on user experience and performance optimization."
             achievements={[
               "Built a secure one-on-one chat platform within WeChat Mini Program",
