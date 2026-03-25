@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Caveat font for marker-style captions */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
 :root {
   --background: #F3F3F3;
   --foreground: #171717;
@@ -16,10 +19,99 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  /* Cork board background */
+  background: #C8A96E;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px);
   font-family: Nunito Sans, Arial, Helvetica, sans-serif;
 }
 
 svg {
   shape-rendering: geometricPrecision;
+}
+
+/* Marker font for captions */
+.marker-font {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+}
+
+/* Polaroid card styling */
+.polaroid-card {
+  background: #FAFAF5;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.3),
+    0 1px 2px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.polaroid-card:hover {
+  transform: rotate(0deg) scale(1.07) !important;
+  cursor: pointer;
+}
+
+/* Pin styling */
+.pin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e05252, #8b0000);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Detail view styling */
+.detail-view-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 2rem;
+}
+
+.detail-view-card {
+  background: #FAFAF5;
+  border-radius: 4px;
+  padding: 3rem 2rem 2rem;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  position: relative;
+  animation: pinPop 0.3s ease-out;
+}
+
+.detail-view-card::before,
+.detail-view-card::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e05252, #8b0000);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.detail-view-card::before {
+  left: 25%;
+}
+
+.detail-view-card::after {
+  right: 25%;
+}
+
+@keyframes pinPop {
+  0% {
+    transform: scale(0.8) translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
