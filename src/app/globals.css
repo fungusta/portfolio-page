@@ -14,6 +14,11 @@
   }
 } */
 
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -22,4 +27,22 @@ body {
 
 svg {
   shape-rendering: geometricPrecision;
+}
+
+/* Custom scrollbar for sections */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }

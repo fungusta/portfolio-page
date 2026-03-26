@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\P1370357\\\\Projects\\\\portfolio-page\" && npm run build 2>&1 | head -50)",
+      "Bash(cd \"C:\\\\Users\\\\P1370357\\\\Projects\\\\portfolio-page\" && npm run build 2>&1 | tail -30)"
+    ]
+  }
+}
