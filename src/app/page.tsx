@@ -480,43 +480,48 @@ export default function Page() {
       </section>,
 
     // Footer
-    <footer key="footer" className="h-screen flex flex-col justify-center items-center py-6 sm:py-8 text-center text-base sm:text-lg text-primary/60 px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
-        <div className="mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-5 text-secondary">Let&apos;s Connect</h2>
-          <div className="flex justify-center space-x-6">
+    <footer key="footer" className="h-screen flex flex-col justify-center items-center py-6 sm:py-8 text-center px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Let&apos;s Connect</h2>
+          <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-primary/65">
+            If you&apos;d like to chat about a role, a project, or just say hi, I&apos;d love to hear from you.
+          </p>
+
+          <div className="mt-8 flex items-center justify-center gap-5 sm:gap-6">
             <a
               href="https://linkedin.com/in/peterjosephfung"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-secondary/10 bg-white/55 text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80 hover:text-primary"
               aria-label="LinkedIn Profile"
               tabIndex={0}
             >
-              <Linkedin size={24} />
+              <Linkedin size={22} />
             </a>
             <a
               href="https://github.com/fungusta"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-secondary/10 bg-white/55 text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80 hover:text-primary"
               aria-label="GitHub Profile"
               tabIndex={0}
             >
-              <Github size={24} />
+              <Github size={22} />
             </a>
             <a
               href="mailto:peterjosephfung@gmail.com"
-              className="transition-all duration-300 hover:text-primary hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-secondary/10 bg-white/55 text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80 hover:text-primary"
               aria-label="Email Me"
               tabIndex={0}
             >
-              <Mail size={24} />
+              <Mail size={22} />
             </a>
           </div>
+
           <a
             href="/PeterJosephFungYuRen_Resume.pdf"
             download
-            className="mt-6 inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-5 py-3 text-sm sm:text-base font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-secondary/10 bg-white/60 px-5 py-3 text-sm sm:text-base font-semibold text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
             Download Resume
             <Download size={18} />
