@@ -29,20 +29,20 @@ export function WorkExperienceCard({
     <div className="space-y-3 sm:space-y-4">
       {duration && (
         <div className="flex items-center gap-2">
-          <span className="text-xs sm:text-sm text-primary/70">{duration}</span>
+          <span className="text-sm sm:text-base text-primary/70">{duration}</span>
         </div>
       )}
       
       {description && (
-        <p className="text-xs sm:text-sm md:text-base text-primary/80">{description}</p>
+        <p className="text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">{description}</p>
       )}
       
       {achievements.length > 0 && (
         <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-secondary">Key Achievements</h4>
+          <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-secondary">Key Achievements</h4>
           <ul className="list-disc list-inside space-y-0.5 sm:space-y-1">
             {achievements.map((achievement, index) => (
-              <li key={index} className="text-xs sm:text-sm md:text-base text-primary/80">{achievement}</li>
+              <li key={index} className="text-sm sm:text-base md:text-lg text-primary/80">{achievement}</li>
             ))}
           </ul>
         </div>
@@ -124,8 +124,8 @@ export function WorkExperienceCard({
         <div className="flex items-start gap-3 sm:gap-4">
           <CompanyLogo />
           <div className="flex-1">
-            <h3 className="text-base sm:text-lg md:text-xl text-secondary">{company}</h3>
-            <p className="text-xs sm:text-sm md:text-base text-primary/80">{role}</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl text-secondary">{company}</h3>
+            <p className="text-sm sm:text-base md:text-lg text-primary/80">{role}</p>
           </div>
           <TechStackIcons />
         </div>
@@ -133,4 +133,3 @@ export function WorkExperienceCard({
     </div>
   )
 }
-

@@ -112,7 +112,7 @@ export function ProjectCard({
             onClick={handleToggleCoreStack}
             onKeyDown={handleToggleCoreStack}
             aria-expanded={showAllCoreStack}
-            className="text-[11px] sm:text-xs md:text-sm px-2 py-1 rounded-full bg-secondary/10 text-secondary transition-colors hover:bg-secondary/20 focus-visible:ring-2 focus-visible:ring-secondary/60"
+            className="text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-full bg-secondary/10 text-secondary transition-colors hover:bg-secondary/20 focus-visible:ring-2 focus-visible:ring-secondary/60"
           >
             {showAllCoreStack ? "Show less" : `+${hiddenCoreCount} more`}
           </button>
@@ -134,7 +134,7 @@ export function ProjectCard({
             type="button"
             onClick={(event) => handleServiceClick(event, service.link)}
             onKeyDown={(event) => handleServiceKeyDown(event, service.link)}
-            className="text-[11px] sm:text-xs md:text-sm px-2.5 py-1 rounded-full bg-primary/5 text-primary/80 hover:bg-primary/10 transition-colors focus-visible:ring-2 focus-visible:ring-secondary/60"
+            className="text-xs sm:text-sm md:text-base px-3 py-1.5 rounded-full bg-primary/5 text-primary/80 hover:bg-primary/10 transition-colors focus-visible:ring-2 focus-visible:ring-secondary/60"
             aria-label={service.link ? `Open ${service.name} details` : service.name}
             tabIndex={0}
           >
@@ -151,8 +151,8 @@ export function ProjectCard({
         <Image src={logo || "/placeholder.svg"} alt={`${title} logo`} fill className="object-contain rounded-xl" />
       </div>
       <div className="flex-1">
-        <h3 className="text-base sm:text-lg md:text-xl text-secondary">{title}</h3>
-        <p className="text-xs sm:text-sm md:text-base text-primary/80">{description}</p>
+        <h3 className="text-lg sm:text-xl md:text-2xl text-secondary">{title}</h3>
+        <p className="text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">{description}</p>
         <InfraServicesBadges />
       </div>
       <TechStackIcons />
@@ -189,4 +189,3 @@ export function ProjectCard({
     </div>
   )
 }
-
