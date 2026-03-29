@@ -4,56 +4,98 @@ import { useEffect, useRef, useState, useCallback, ReactNode } from 'react'
 
 interface FullpageScrollProps {
   children: ReactNode[]
+  sectionLabels?: string[]
 }
 
-export function FullpageScroll({ children }: FullpageScrollProps) {
+const SCROLL_LOCK_MS = 1000
+const WHEEL_GESTURE_IDLE_MS = 180
+const WHEEL_DELTA_THRESHOLD = 8
+
+export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps) {
   const [currentSection, setCurrentSection] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartY = useRef(0)
+  const touchLocked = useRef(false)
+  const wheelGestureLocked = useRef(false)
+  const scrollLockTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const wheelGestureTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const currentSectionRef = useRef(0)
+  const isScrollingRef = useRef(false)
 
   const totalSections = children.length
+  const labels = sectionLabels && sectionLabels.length === totalSections
+    ? sectionLabels
+    : Array.from({ length: totalSections }, (_, index) => `Section ${index + 1}`)
 
   const scrollToSection = useCallback((index: number) => {
-    if (index < 0 || index >= totalSections || isScrolling) return
+    if (index < 0 || index >= totalSections || isScrollingRef.current) return
 
+    if (scrollLockTimeoutRef.current) {
+      clearTimeout(scrollLockTimeoutRef.current)
+    }
+
+    isScrollingRef.current = true
     setIsScrolling(true)
     setCurrentSection(index)
 
-    // Allow scrolling again after animation completes
-    setTimeout(() => {
+    // Keep the scroll locked until the page transition has fully completed.
+    scrollLockTimeoutRef.current = setTimeout(() => {
       setIsScrolling(false)
-    }, 1000)
-  }, [totalSections, isScrolling])
+      touchLocked.current = false
+      isScrollingRef.current = false
+      scrollLockTimeoutRef.current = null
+    }, SCROLL_LOCK_MS)
+  }, [totalSections])
+
+  useEffect(() => {
+    currentSectionRef.current = currentSection
+  }, [currentSection])
+
+  useEffect(() => {
+    isScrollingRef.current = isScrolling
+  }, [isScrolling])
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
 
-      if (isScrolling) return
+      if (wheelGestureTimeoutRef.current) {
+        clearTimeout(wheelGestureTimeoutRef.current)
+      }
+
+      wheelGestureTimeoutRef.current = setTimeout(() => {
+        wheelGestureLocked.current = false
+        wheelGestureTimeoutRef.current = null
+      }, WHEEL_GESTURE_IDLE_MS)
+
+      if (Math.abs(e.deltaY) < WHEEL_DELTA_THRESHOLD) return
+      if (isScrollingRef.current || wheelGestureLocked.current) return
+
+      wheelGestureLocked.current = true
 
       if (e.deltaY > 0) {
         // Scroll down
-        scrollToSection(currentSection + 1)
+        scrollToSection(currentSectionRef.current + 1)
       } else {
         // Scroll up
-        scrollToSection(currentSection - 1)
+        scrollToSection(currentSectionRef.current - 1)
       }
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isScrolling) return
+      if (isScrollingRef.current) return
 
       switch (e.key) {
         case 'ArrowDown':
         case 'PageDown':
           e.preventDefault()
-          scrollToSection(currentSection + 1)
+          scrollToSection(currentSectionRef.current + 1)
           break
         case 'ArrowUp':
         case 'PageUp':
           e.preventDefault()
-          scrollToSection(currentSection - 1)
+          scrollToSection(currentSectionRef.current - 1)
           break
         case 'Home':
           e.preventDefault()
@@ -67,23 +109,28 @@ export function FullpageScroll({ children }: FullpageScrollProps) {
     }
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (isScrollingRef.current) return
+
       touchStartY.current = e.touches[0].clientY
+      touchLocked.current = false
     }
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (isScrolling) return
+      if (isScrollingRef.current || touchLocked.current) return
 
       const touchEndY = e.touches[0].clientY
       const diff = touchStartY.current - touchEndY
 
       // Minimum swipe distance
       if (Math.abs(diff) > 50) {
+        touchLocked.current = true
+
         if (diff > 0) {
           // Swipe up - scroll down
-          scrollToSection(currentSection + 1)
+          scrollToSection(currentSectionRef.current + 1)
         } else {
           // Swipe down - scroll up
-          scrollToSection(currentSection - 1)
+          scrollToSection(currentSectionRef.current - 1)
         }
       }
     }
@@ -105,7 +152,18 @@ export function FullpageScroll({ children }: FullpageScrollProps) {
       }
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [currentSection, isScrolling, totalSections, scrollToSection])
+  }, [totalSections, scrollToSection])
+
+  useEffect(() => {
+    return () => {
+      if (scrollLockTimeoutRef.current) {
+        clearTimeout(scrollLockTimeoutRef.current)
+      }
+      if (wheelGestureTimeoutRef.current) {
+        clearTimeout(wheelGestureTimeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="h-screen overflow-hidden">
@@ -123,21 +181,28 @@ export function FullpageScroll({ children }: FullpageScrollProps) {
         ))}
       </div>
 
-      {/* Section indicators */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
-        {Array.from({ length: totalSections }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => scrollToSection(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSection
-                ? 'bg-secondary scale-125'
-                : 'bg-primary/30 hover:bg-primary/50'
-            }`}
-            aria-label={`Go to section ${index + 1}`}
-          />
-        ))}
-      </div>
+      <nav
+        aria-label="Page sections"
+        className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-50"
+      >
+        <div className="flex flex-col items-end gap-2 rounded-2xl bg-white/35 px-3 py-3 backdrop-blur-sm">
+          {labels.map((label, index) => (
+            <button
+              key={label}
+              onClick={() => scrollToSection(index)}
+              className={`text-right text-xs sm:text-sm font-semibold tracking-[0.12em] uppercase transition-colors duration-300 ${
+                index === currentSection
+                  ? 'text-secondary'
+                  : 'text-primary/30 hover:text-primary/55'
+              }`}
+              aria-current={index === currentSection ? 'page' : undefined}
+              aria-label={`Go to ${label}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </nav>
     </div>
   )
 }

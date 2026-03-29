@@ -268,12 +268,13 @@ export function WorkExperienceTimeline() {
                     href={activeJob.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 relative w-16 h-16 sm:w-20 sm:h-20 container-neumorphic-outset
-                               rounded-2xl overflow-hidden transition-transform hover:scale-105"
+                    className="shrink-0 relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20
+                               rounded-full overflow-hidden border border-secondary/10 shadow-sm
+                               transition-transform hover:scale-105"
                     aria-label={`Visit ${activeJob.company} website`}
                   >
                     <Image src={activeJob.logo} alt={activeJob.company} fill
-                           className="object-contain p-2" sizes="80px" />
+                           className="object-cover" sizes="80px" />
                   </a>
                   <div>
                     <h2 id="overlay-job-title"

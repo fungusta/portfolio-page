@@ -1,12 +1,83 @@
-import { ArrowDown, Linkedin, Github, Mail } from "lucide-react"
+import Image from "next/image"
+import { ArrowDown, ArrowUpRight, Linkedin, Github, Mail } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { WorkExperienceTimeline } from "@/components/work-experience-timeline"
-import { ProjectCard } from "@/components/project-card"
 // import { EducationCard } from "@/components/education-card"
 import { ProfileImageCarousel } from "@/components/profile-image-carousel"
 import { FullpageScroll } from "@/components/fullpage-scroll"
 
+const featuredProjects = [
+  {
+    title: "PayMeLah",
+    summary: "A smart Singapore bill-splitting app that scans receipts, splits items among friends, and helps groups settle up instantly with PayNow or PayLah.",
+    note:
+      "I built PayMeLah because I want to reduce the friction of chasing friends for money. I wanted an easier way to split bills, keep track of what each person owes, and make settling up feel simple instead of awkward.",
+    status: "Currently in testing",
+    stack: [
+      { name: "FastAPI", icon: "images/tech-logos/fastapi.svg", link: "https://fastapi.tiangolo.com/" },
+      { name: "React Native", icon: "images/tech-logos/react.svg", link: "https://reactnative.dev/" },
+      { name: "Supabase", icon: "images/tech-logos/supabase.svg", link: "https://supabase.com/" },
+      { name: "PostgreSQL", icon: "images/tech-logos/postgresql.svg", link: "https://www.postgresql.org/" },
+    ],
+  },
+  {
+    title: "HomeCooked",
+    summary: "An AI-powered recipe app that turns messy web pages and Instagram posts into structured, reusable recipes.",
+    note:
+      "I built HomeCooked to make recipe creation feel less manual. Instead of copying scattered ingredients and steps by hand, I wanted a smoother way to turn unstructured content into something clean, personal, and easy to reuse.",
+    logo: "images/homecooked-logo.png",
+    liveLink: "https://home-cooked-gamma.vercel.app/",
+    codeLink: "https://github.com/fungusta",
+    stack: [
+      { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+      { name: "Supabase", icon: "images/tech-logos/supabase.svg", link: "https://supabase.com/" },
+      { name: "OpenAI", icon: "images/tech-logos/openai.svg", link: "https://platform.openai.com/" },
+      { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
+    ],
+  },
+] as const
+
+const archivedProjects = [
+  {
+    title: "RainOracle",
+    description: "Minimalist weather app for fast, location-specific rain forecasts.",
+    logo: "images/rain-oracle-logo.png",
+    link: "https://rain-oracle-nu.vercel.app/",
+    coreStack: [
+      { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+      { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
+      { name: "Tailwind", icon: "images/tech-logos/tailwind-css.svg", link: "https://tailwindcss.com/" },
+    ],
+  },
+  {
+    title: "FABook",
+    description: "Digital address book for financial advisors",
+    logo: "images/FABook-logo.png",
+    link: "https://github.com/fungusta/FABook",
+    coreStack: [{ name: "Java", icon: "images/tech-logos/java.svg", link: "https://www.java.com/" }],
+  },
+  {
+    title: "Stiks The Game",
+    description: "2D hack-and-slash platformer",
+    logo: "images/sticks-logo.png",
+    link: "https://github.com/fungusta/StiksTheGame",
+    coreStack: [
+      { name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },
+      { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" },
+    ],
+  },
+] as const
+
 export default function Page() {
+  const sectionLabels = [
+    "Home",
+    "About",
+    "Projects",
+    "Experience",
+    "Archive",
+    "Contact",
+  ]
+
   const sections = [
     // Hero Section
     <section key="hero" className="flex flex-col items-center justify-center h-screen text-center p-4 px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
@@ -31,19 +102,124 @@ export default function Page() {
             <Card className="p-5 sm:p-7 container-neumorphic-inset">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Software Engineering</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                Passionate about creating elegant solutions to complex problems. Experienced in full stack development
-                with a focus on modern web technologies.
+                I am extremely passionate about creating applications that can genuinely impact people&apos;s lives. I am especially interested in building AI-powered applications because I believe they are the next step in the application landscape.
               </p>
             </Card>
             <Card className="p-5 sm:p-7 container-neumorphic-inset min-h-[px]">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Visual Creation</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Curious Mind</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I enjoy exploring different UI design techniques, my current favourite: Neumorphism.
+                I love exploring and experimenting with new things. I enjoy trying interesting tools and experiences, whether that is drone photography, new AI tools, or other ideas that spark curiosity.
                 <br></br>
                 <br></br>
-                And when I am not coding, I enjoy taking beautiful landscapes using my camera and drone.
+                That curiosity carries into how I build, learn, and think about creating better digital experiences.
               </p>
             </Card>
+          </div>
+        </div>
+      </section>,
+
+    // Featured Projects Section
+    <section key="projects-featured" className="h-screen flex flex-col justify-center px-4 sm:px-12 md:px-24 lg:px-28 xl:px-36 py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="max-w-3xl mb-7 sm:mb-9">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Recent Projects</h2>
+            <p className="mt-3 text-base sm:text-lg md:text-xl text-primary/75 leading-relaxed">
+              Two recent projects that best represent how I design, build, and ship products today.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+            {featuredProjects.map((project) => (
+              <article
+                key={project.title}
+                className="h-full container-neumorphic-outset p-5 sm:p-6 lg:p-7"
+              >
+                <div className="flex h-full flex-col justify-between gap-6">
+                  <div className="space-y-5">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-2">
+                        <div>
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary">
+                            {project.title}
+                          </h3>
+                          <p className="mt-2 text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">
+                            {project.summary}
+                          </p>
+                        </div>
+                      </div>
+
+                      {project.logo ? (
+                        <div className="relative h-12 w-12 sm:h-14 sm:w-14 shrink-0">
+                          <Image
+                            src={`/${project.logo}`}
+                            alt={`${project.title} logo`}
+                            fill
+                            className="object-contain rounded-xl"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <div className="container-neumorphic-inset rounded-2xl px-4 py-3">
+                      <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-primary/55">
+                        Personal Note
+                      </p>
+                      <p className="mt-2 text-sm sm:text-base text-primary/80 leading-relaxed">
+                        {project.note}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.link}
+                          target={item.link ? "_blank" : undefined}
+                          rel={item.link ? "noopener noreferrer" : undefined}
+                          className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-sm text-primary/85 transition-transform duration-300 hover:scale-[1.02]"
+                          aria-label={item.link ? `Open ${item.name}` : item.name}
+                        >
+                          <span className="relative h-4 w-4 shrink-0">
+                            <Image src={`/${item.icon}`} alt={item.name} fill className="object-contain" />
+                          </span>
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {project.liveLink ? (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
+                      >
+                        Try me out!
+                        <ArrowUpRight size={18} />
+                      </a>
+                    ) : null}
+                    {project.codeLink ? (
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-primary transition-transform duration-300 hover:scale-[1.02]"
+                      >
+                        View Code
+                        <Github size={18} />
+                      </a>
+                    ) : null}
+                    {!project.liveLink && !project.codeLink ? (
+                      <span className="inline-flex items-center rounded-full bg-white/70 px-4 py-2.5 text-sm font-semibold text-primary/60">
+                        {project.status ?? "Currently unavailable"}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>,
@@ -56,64 +232,67 @@ export default function Page() {
         </div>
       </section>,
 
-    // Projects Section
-    <section key="projects" className="h-screen flex flex-col px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-12 sm:py-16">
-        <div className="max-w-6xl mx-auto w-full overflow-y-auto flex-1 space-y-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-7 sm:mb-9 text-secondary">Projects</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <ProjectCard
-            title="FABook"
-            description="Digital address book for financial advisors"
-            logo="images/FABook-logo.png"
-            link="https://github.com/fungusta/FABook"
-            coreStack={[{ name: "Java", icon: "images/tech-logos/java.svg", link: "https://www.java.com/" }]}
-            />
-            <ProjectCard
-            title="Stiks The Game"
-            description="2D hack-and-slash platformer"
-            logo="images/sticks-logo.png"
-            link="https://github.com/fungusta/StiksTheGame"
-            coreStack={[
-              { name: "Unity", icon: "images/tech-logos/unity.svg", link: "https://unity.com/" },
-              { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" }
-            ]}
-            />
+    // Other Projects Section
+    <section key="projects-archive" className="h-screen flex flex-col justify-center px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="max-w-3xl mb-7 sm:mb-9">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Other Projects</h2>
+            <p className="mt-3 text-base sm:text-lg md:text-xl text-primary/75 leading-relaxed">
+              Earlier builds and experiments that still show the range of what I like to make.
+            </p>
           </div>
-          <ProjectCard
-            title="HomeCooked"
-            description="HomeCooked saves your recipes and instantly converts website or Instagram posts into clean, usable cooking instructions."
-            logo="images/homecooked-logo.png"
-            link="https://home-cooked-gamma.vercel.app/"
-            coreStack={[
-              { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
-              { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
-              { name: "TypeScript", icon: "images/tech-logos/typescript.svg", link: "https://www.typescriptlang.org/" },
-              { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
-              { name: "Tailwind", icon: "images/tech-logos/tailwind-css.svg", link: "https://tailwindcss.com/" },
-            ]}
-            infraServices={[
-              { name: "Supabase", link: "https://supabase.com/" },
-              { name: "MySQL", link: "https://www.mysql.com/" },
-              { name: "Azure", link: "https://azure.microsoft.com/" },
-              { name: "Vercel", link: "https://vercel.com/" }
-            ]}
-          />
-          <ProjectCard
-            title="RainOracle"
-            description="A fast, one-button weather app built to provide immediate weather forecasts"
-            logo="images/rain-oracle-logo.png"
-            link="https://rain-oracle-nu.vercel.app/"
-            coreStack={[
-              { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
-              { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
-              { name: "TypeScript", icon: "images/tech-logos/typescript.svg", link: "https://www.typescriptlang.org/" },
-              { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
-              { name: "Tailwind", icon: "images/tech-logos/tailwind-css.svg", link: "https://tailwindcss.com/" },
-            ]}
-            infraServices={[
-              { name: "Vercel", link: "https://vercel.com/" }
-            ]}
-          />
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {archivedProjects.map((project) => (
+              <a
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group container-neumorphic-outset p-5 sm:p-6 transition-transform duration-300 hover:scale-[1.02]"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="relative h-12 w-12 shrink-0">
+                    <Image
+                      src={`/${project.logo}`}
+                      alt={`${project.title} logo`}
+                      fill
+                      className="object-contain rounded-xl"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-lg sm:text-xl md:text-2xl text-secondary">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight
+                        size={18}
+                        className="mt-1 shrink-0 text-primary/50 transition-colors group-hover:text-primary"
+                      />
+                    </div>
+                    <p className="mt-1 text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {project.coreStack.map((item) => (
+                        <span
+                          key={item.name}
+                          className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-xs sm:text-sm text-primary/80"
+                        >
+                          <span className="relative h-4 w-4 shrink-0">
+                            <Image src={`/${item.icon}`} alt={item.name} fill className="object-contain" />
+                          </span>
+                          {item.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>,
 
@@ -155,5 +334,5 @@ export default function Page() {
       </footer>
   ];
 
-  return <FullpageScroll>{sections}</FullpageScroll>
+  return <FullpageScroll sectionLabels={sectionLabels}>{sections}</FullpageScroll>
 }
