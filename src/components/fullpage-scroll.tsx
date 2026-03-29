@@ -8,17 +8,20 @@ interface FullpageScrollProps {
 }
 
 const SCROLL_LOCK_MS = 1000
+const TRACKER_IDLE_MS = 900
 const WHEEL_GESTURE_IDLE_MS = 180
 const WHEEL_DELTA_THRESHOLD = 8
 
 export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps) {
   const [currentSection, setCurrentSection] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [isTrackerVisible, setIsTrackerVisible] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartY = useRef(0)
   const touchLocked = useRef(false)
   const wheelGestureLocked = useRef(false)
   const scrollLockTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const trackerTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const wheelGestureTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const currentSectionRef = useRef(0)
   const isScrollingRef = useRef(false)
@@ -28,8 +31,23 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
     ? sectionLabels
     : Array.from({ length: totalSections }, (_, index) => `Section ${index + 1}`)
 
+  const showTracker = useCallback(() => {
+    setIsTrackerVisible(true)
+
+    if (trackerTimeoutRef.current) {
+      clearTimeout(trackerTimeoutRef.current)
+    }
+
+    trackerTimeoutRef.current = setTimeout(() => {
+      setIsTrackerVisible(false)
+      trackerTimeoutRef.current = null
+    }, TRACKER_IDLE_MS)
+  }, [])
+
   const scrollToSection = useCallback((index: number) => {
     if (index < 0 || index >= totalSections || isScrollingRef.current) return
+
+    showTracker()
 
     if (scrollLockTimeoutRef.current) {
       clearTimeout(scrollLockTimeoutRef.current)
@@ -46,7 +64,7 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
       isScrollingRef.current = false
       scrollLockTimeoutRef.current = null
     }, SCROLL_LOCK_MS)
-  }, [totalSections])
+  }, [showTracker, totalSections])
 
   useEffect(() => {
     currentSectionRef.current = currentSection
@@ -59,6 +77,7 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
+      showTracker()
 
       if (wheelGestureTimeoutRef.current) {
         clearTimeout(wheelGestureTimeoutRef.current)
@@ -84,6 +103,8 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      showTracker()
+
       if (isScrollingRef.current) return
 
       switch (e.key) {
@@ -111,11 +132,14 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
     const handleTouchStart = (e: TouchEvent) => {
       if (isScrollingRef.current) return
 
+      showTracker()
       touchStartY.current = e.touches[0].clientY
       touchLocked.current = false
     }
 
     const handleTouchMove = (e: TouchEvent) => {
+      showTracker()
+
       if (isScrollingRef.current || touchLocked.current) return
 
       const touchEndY = e.touches[0].clientY
@@ -152,12 +176,15 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
       }
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [totalSections, scrollToSection])
+  }, [showTracker, totalSections, scrollToSection])
 
   useEffect(() => {
     return () => {
       if (scrollLockTimeoutRef.current) {
         clearTimeout(scrollLockTimeoutRef.current)
+      }
+      if (trackerTimeoutRef.current) {
+        clearTimeout(trackerTimeoutRef.current)
       }
       if (wheelGestureTimeoutRef.current) {
         clearTimeout(wheelGestureTimeoutRef.current)
@@ -183,7 +210,9 @@ export function FullpageScroll({ children, sectionLabels }: FullpageScrollProps)
 
       <nav
         aria-label="Page sections"
-        className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-50"
+        className={`fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-50 transition-opacity duration-300 md:opacity-100 md:pointer-events-auto ${
+          isTrackerVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       >
         <div className="flex flex-col items-end gap-2 rounded-2xl bg-white/35 px-3 py-3 backdrop-blur-sm">
           {labels.map((label, index) => (

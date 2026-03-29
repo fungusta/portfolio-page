@@ -10,19 +10,19 @@ type OverlayState = 'closed' | 'opening' | 'open' | 'closing'
 // Oldest → newest, top → bottom
 const orderedJobs = [...workExperiences].reverse()
 
-// ViewBox 1000 × 430 — 3 horizontal rows with 2 smooth semicircular U-turns.
-// Rows at y=110, 250, 390 (gap=140). Arc radius = 70 (half the gap).
+// ViewBox 1000 × 540 — 3 horizontal rows with 2 smooth semicircular U-turns.
+// Rows at y=100, 280, 460 (gap=180). Arc radius = 90 (half the gap).
 // Right U-turn at x=875 (sweep=1, clockwise → goes right), left U-turn at x=125 (sweep=0).
 const SNAKE_PATH =
-  'M 60 110 L 875 110 A 70 70 0 0 1 875 250 L 125 250 A 70 70 0 0 0 125 390 L 940 390'
+  'M 60 100 L 875 100 A 90 90 0 0 1 875 280 L 125 280 A 90 90 0 0 0 125 460 L 940 460'
 
 const ANCHORS: [number, number][] = [
-  [328, 110],
-  [676, 110],
-  [622, 250],
-  [378, 250],
-  [340, 390],
-  [690, 390],
+  [328, 100],
+  [676, 100],
+  [622, 280],
+  [378, 280],
+  [340, 460],
+  [690, 460],
 ]
 
 // Full teardrop pin with its tip anchored at (0, 0) so it sits exactly on the timeline.
@@ -77,7 +77,7 @@ export function WorkExperienceTimeline() {
     if (overlayState === 'open') closeButtonRef.current?.focus()
   }, [overlayState])
 
-  const openOverlay = useCallback((job: WorkExperience, el: SVGGElement) => {
+  const openOverlay = useCallback((job: WorkExperience, el: HTMLElement | SVGGElement) => {
     const r = el.getBoundingClientRect()
     setOriginPos({ x: r.left + r.width / 2, y: r.top + r.height / 2 })
     setActiveJob(job)
@@ -114,14 +114,50 @@ export function WorkExperienceTimeline() {
 
   return (
     <div className="w-full">
-      <svg
-        ref={svgRef}
-        viewBox="0 0 1000 430"
-        width="100%"
-        style={{ height: 'auto', overflow: 'visible' }}
-        preserveAspectRatio="xMidYMid meet"
-        aria-label="Work experience timeline"
-      >
+      <div className="md:hidden relative pr-2 py-4">
+        <div className="absolute left-5 top-0 bottom-0 w-px -translate-x-1/2 bg-secondary/20" aria-hidden="true" />
+        {orderedJobs.map((job) => (
+          <button
+            key={job.company}
+            type="button"
+            className="relative mb-5 flex w-full items-start gap-4 pl-16 text-left last:mb-0"
+            aria-label={`${job.role} at ${job.company}`}
+            onClick={e => openOverlay(job, e.currentTarget)}
+          >
+            <span className="absolute left-5 top-1 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-[#F3F3F3] ring-2 ring-secondary/25 shadow-sm">
+              <span className="relative h-7 w-7 overflow-hidden rounded-full">
+                <Image
+                  src={`/${job.logo}`}
+                  alt={job.company}
+                  fill
+                  className="object-cover"
+                  sizes="28px"
+                />
+              </span>
+            </span>
+            <span className="w-full rounded-2xl border border-secondary/10 bg-white/65 px-4 py-3 shadow-sm transition-transform duration-300 active:scale-[0.99]">
+              <span className="block text-base font-bold leading-tight text-secondary">
+                {job.role}
+              </span>
+              <span className="mt-1 block text-sm font-semibold text-primary">
+                {job.company}
+              </span>
+              <span className="mt-1 block text-xs text-primary/55">
+                {job.duration}
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <div className="hidden h-full w-full md:flex md:items-center">
+        <svg
+          ref={svgRef}
+          viewBox="0 0 1000 540"
+          className="block h-full w-full overflow-visible"
+          preserveAspectRatio="xMidYMid meet"
+          aria-label="Work experience timeline"
+        >
         <defs>
           {/* Circular clip applied to every logo image via objectBoundingBox */}
           <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
@@ -134,30 +170,39 @@ export function WorkExperienceTimeline() {
         </defs>
 
         {/* Start label + dot */}
-        <text x="60" y="92" textAnchor="middle" fontSize="11" fill="#7F71B9" fillOpacity="0.5"
+        <text x="60" y="74" textAnchor="middle" fontSize="16" fill="#7F71B9" fillOpacity="0.5"
               fontFamily="Nunito Sans, Arial, sans-serif" fontWeight="300">
           Dec 2022
         </text>
-        <circle cx="60" cy="110" r="5" fill="#7F71B9" fillOpacity="0.5" />
+        <circle cx="60" cy="100" r="7" fill="#7F71B9" fillOpacity="0.5" />
 
         {/* Snake — 3 rows, 2 right-angle turns */}
         <path
           d={SNAKE_PATH}
           fill="none"
           stroke="#7F71B9"
-          strokeWidth="3"
+          strokeWidth="4.5"
           strokeLinecap="round"
           strokeLinejoin="miter"
+          className="timeline-snake-base"
+        />
+        <path
+          d={SNAKE_PATH}
+          fill="none"
+          stroke="#F5EDFF"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           pathLength={1}
-          className={animated ? 'timeline-snake-animated' : 'timeline-snake-hidden'}
+          className={animated ? 'timeline-snake-glow' : 'timeline-snake-glow-hidden'}
         />
 
         {/* End — pulsing dot + label */}
-        <circle cx="940" cy="390" r="5" fill="#7F71B9" fillOpacity="0.5">
-          <animate attributeName="r"            values="5;7;5"     dur="2s" repeatCount="indefinite" />
+        <circle cx="940" cy="460" r="7" fill="#7F71B9" fillOpacity="0.5">
+          <animate attributeName="r"            values="7;9;7"     dur="2s" repeatCount="indefinite" />
           <animate attributeName="fill-opacity" values="0.5;0.2;0.5" dur="2s" repeatCount="indefinite" />
         </circle>
-        <text x="940" y="410" textAnchor="middle" fontSize="11" fill="#7F71B9" fillOpacity="0.5"
+        <text x="940" y="492" textAnchor="middle" fontSize="16" fill="#7F71B9" fillOpacity="0.5"
               fontFamily="Nunito Sans, Arial, sans-serif" fontWeight="300">
           Present
         </text>
@@ -186,30 +231,30 @@ export function WorkExperienceTimeline() {
               {/* Pin-only visual group scales independently from the date label */}
               <g className="timeline-droplet-visual" style={{ pointerEvents: 'none' }}>
                 {/* Solid teardrop pin */}
-                <path d={PIN} fill="#7F71B9" stroke="#6C5FA6" strokeWidth="1.5"
+                <path d={PIN} fill="#7F71B9" stroke="#6C5FA6" strokeWidth="2"
                       filter="url(#drop-shadow)" />
 
                 {/* Light inset keeps the logo visually contained within the teardrop head */}
-                <circle cx="0" cy="-34" r="16.5" fill="#F3F3F3" />
+                <circle cx="0" cy="-34" r="19" fill="#F3F3F3" />
 
                 {/* Logo held inside the teardrop head */}
                 <image
                   href={`/${job.logo}`}
-                  x="-14" y="-48"
-                  width="28" height="28"
+                  x="-17" y="-51"
+                  width="34" height="34"
                   clipPath="url(#logo-clip)"
                   preserveAspectRatio="xMidYMid meet"
                 />
 
                 {/* Role — bold, above pin */}
-                <text x="0" y="-78" textAnchor="middle"
-                      fontSize="11" fontWeight="700" fill="#201A72"
+                <text x="0" y="-88" textAnchor="middle"
+                      fontSize="15.5" fontWeight="700" fill="#201A72"
                       fontFamily="Nunito Sans, Arial, sans-serif">
                   {job.role}
                 </text>
                 {/* Company name */}
-                <text x="0" y="-65" textAnchor="middle"
-                      fontSize="9" fill="#7F71B9"
+                <text x="0" y="-71" textAnchor="middle"
+                      fontSize="12.75" fill="#7F71B9"
                       fontFamily="Nunito Sans, Arial, sans-serif">
                   {job.company}
                 </text>
@@ -217,19 +262,20 @@ export function WorkExperienceTimeline() {
 
               {/* Date stays fixed so hover scale does not distort its position */}
               <g style={{ pointerEvents: 'none' }}>
-                <text x="0" y="20" textAnchor="middle"
-                      fontSize="11" fill="#7F71B9" fillOpacity="0.5"
+                <text x="0" y="28" textAnchor="middle"
+                      fontSize="14.5" fill="#7F71B9" fillOpacity="0.5"
                       fontFamily="Nunito Sans, Arial, sans-serif" fontWeight="300">
                   {startDateLabel}
                 </text>
               </g>
 
               {/* Transparent hit area (outside visual group so it doesn't affect fill-box) */}
-              <rect x="-90" y="-84" width="180" height="116" fill="transparent" />
+              <rect x="-112" y="-100" width="224" height="144" fill="transparent" />
             </g>
           )
         })}
-      </svg>
+        </svg>
+      </div>
 
       {/* Full-page circle-reveal overlay */}
       {mounted && overlayState !== 'closed' && ReactDOM.createPortal(

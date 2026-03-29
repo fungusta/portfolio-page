@@ -6,7 +6,26 @@ import { WorkExperienceTimeline } from "@/components/work-experience-timeline"
 import { ProfileImageCarousel } from "@/components/profile-image-carousel"
 import { FullpageScroll } from "@/components/fullpage-scroll"
 
-const featuredProjects = [
+type FeaturedProject = {
+  title: string
+  summary: string
+  note: string
+  status?: string
+  logo?: string
+  liveLink?: string
+  codeLink?: string
+  stack: readonly { name: string; icon: string; link: string }[]
+}
+
+type ArchivedProject = {
+  title: string
+  description: string
+  logo: string
+  link: string
+  coreStack: readonly { name: string; icon: string; link: string }[]
+}
+
+const featuredProjects: FeaturedProject[] = [
   {
     title: "PayMeLah",
     summary: "A smart Singapore bill-splitting app that scans receipts, splits items among friends, and helps groups settle up instantly with PayNow or PayLah.",
@@ -35,9 +54,9 @@ const featuredProjects = [
       { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
     ],
   },
-] as const
+] 
 
-const archivedProjects = [
+const archivedProjects: ArchivedProject[] = [
   {
     title: "RainOracle",
     description: "Minimalist weather app for fast, location-specific rain forecasts.",
@@ -66,9 +85,21 @@ const archivedProjects = [
       { name: "C Sharp", icon: "images/tech-logos/csharp.svg", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" },
     ],
   },
-] as const
+]
 
 export default function Page() {
+  const mobileFeaturedProjects = featuredProjects.slice(0, 1)
+  const mobileArchivedProjects: ArchivedProject[] = [
+    ...featuredProjects.slice(1).map((project) => ({
+      title: project.title,
+      description: project.summary,
+      logo: project.logo ?? "",
+      link: project.liveLink ?? project.codeLink ?? "#",
+      coreStack: project.stack,
+    })),
+    ...archivedProjects,
+  ]
+
   const sectionLabels = [
     "Home",
     "About",
@@ -102,16 +133,19 @@ export default function Page() {
             <Card className="p-5 sm:p-7 container-neumorphic-inset">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Software Engineering</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I am extremely passionate about creating applications that can genuinely impact people&apos;s lives. I am especially interested in building AI-powered applications because I believe they are the next step in the application landscape.
+                I am extremely passionate about creating applications that can genuinely impact people&apos;s lives. 
+                <br></br>
+                <br></br>
+                I am especially interested in building AI-powered applications because I believe they are the next step in the application landscape.
               </p>
             </Card>
             <Card className="p-5 sm:p-7 container-neumorphic-inset min-h-[px]">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Curious Mind</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I love exploring and experimenting with new things. I enjoy trying interesting tools and experiences, whether that is drone photography, new AI tools, or other ideas that spark curiosity.
+                I love exploring and experimenting with new things. 
                 <br></br>
                 <br></br>
-                That curiosity carries into how I build, learn, and think about creating better digital experiences.
+                I enjoy trying interesting tools and experiences, whether that is drone photography, new AI tools, or other ideas that are interesting to me.
               </p>
             </Card>
           </div>
@@ -124,11 +158,105 @@ export default function Page() {
           <div className="max-w-3xl mb-7 sm:mb-9">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Recent Projects</h2>
             <p className="mt-3 text-base sm:text-lg md:text-xl text-primary/75 leading-relaxed">
-              Two recent projects that best represent how I design, build, and ship products today.
+              Recent work that best represents how I design, build, and ship products today.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div className="grid gap-6 items-stretch md:hidden">
+            {mobileFeaturedProjects.map((project) => (
+              <article
+                key={project.title}
+                className="h-full container-neumorphic-outset p-5 sm:p-6 lg:p-7"
+              >
+                <div className="flex h-full flex-col justify-between gap-6">
+                  <div className="space-y-5">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-2">
+                        <div>
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary">
+                            {project.title}
+                          </h3>
+                          <p className="mt-2 text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">
+                            {project.summary}
+                          </p>
+                        </div>
+                      </div>
+
+                      {project.logo ? (
+                        <div className="relative h-12 w-12 sm:h-14 sm:w-14 shrink-0">
+                          <Image
+                            src={`/${project.logo}`}
+                            alt={`${project.title} logo`}
+                            fill
+                            className="object-contain rounded-xl"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <div className="container-neumorphic-inset rounded-2xl px-4 py-3">
+                      <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-primary/55">
+                        Personal Note
+                      </p>
+                      <p className="mt-2 text-sm sm:text-base text-primary/80 leading-relaxed">
+                        {project.note}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.link}
+                          target={item.link ? "_blank" : undefined}
+                          rel={item.link ? "noopener noreferrer" : undefined}
+                          className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-sm text-primary/85 transition-transform duration-300 hover:scale-[1.02]"
+                          aria-label={item.link ? `Open ${item.name}` : item.name}
+                        >
+                          <span className="relative h-4 w-4 shrink-0">
+                            <Image src={`/${item.icon}`} alt={item.name} fill className="object-contain" />
+                          </span>
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {project.liveLink ? (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
+                      >
+                        Try me out!
+                        <ArrowUpRight size={18} />
+                      </a>
+                    ) : null}
+                    {project.codeLink ? (
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-primary transition-transform duration-300 hover:scale-[1.02]"
+                      >
+                        View Code
+                        <Github size={18} />
+                      </a>
+                    ) : null}
+                    {!project.liveLink && !project.codeLink ? (
+                      <span className="inline-flex items-center rounded-full bg-white/70 px-4 py-2.5 text-sm font-semibold text-primary/60">
+                        {project.status ?? "Currently unavailable"}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="hidden md:grid lg:grid-cols-2 gap-6 items-stretch">
             {featuredProjects.map((project) => (
               <article
                 key={project.title}
@@ -225,10 +353,12 @@ export default function Page() {
       </section>,
 
     // Work Experience Section
-    <section key="experience" className="h-screen flex flex-col justify-center px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-12 sm:py-16">
-        <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-7 sm:mb-9 text-secondary">Work Experience</h2>
-          <WorkExperienceTimeline />
+    <section key="experience" className="h-screen overflow-hidden px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-8 sm:py-10 md:py-8 lg:py-10">
+        <div className="max-w-6xl mx-auto flex h-full w-full flex-col">
+          <h2 className="shrink-0 text-2xl sm:text-3xl md:text-4xl font-bold mb-5 sm:mb-6 md:mb-5 lg:mb-6 text-secondary">Work Experience</h2>
+          <div className="min-h-0 flex-1">
+            <WorkExperienceTimeline />
+          </div>
         </div>
       </section>,
 
@@ -243,13 +373,66 @@ export default function Page() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
+            {mobileArchivedProjects.map((project) => (
+              <a
+                key={`mobile-${project.title}`}
+                href={project.link}
+                target={project.link !== "#" ? "_blank" : undefined}
+                rel={project.link !== "#" ? "noopener noreferrer" : undefined}
+                className="group container-neumorphic-outset p-5 sm:p-6 transition-transform duration-300 hover:scale-[1.02] md:hidden"
+              >
+                <div className="flex items-start gap-4">
+                  {project.logo ? (
+                    <div className="relative h-12 w-12 shrink-0">
+                      <Image
+                        src={`/${project.logo}`}
+                        alt={`${project.title} logo`}
+                        fill
+                        className="object-contain rounded-xl"
+                      />
+                    </div>
+                  ) : null}
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-lg sm:text-xl md:text-2xl text-secondary">
+                        {project.title}
+                      </h3>
+                      {project.link !== "#" ? (
+                        <ArrowUpRight
+                          size={18}
+                          className="mt-1 shrink-0 text-primary/50 transition-colors group-hover:text-primary"
+                        />
+                      ) : null}
+                    </div>
+                    <p className="mt-1 text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {project.coreStack.map((item) => (
+                        <span
+                          key={item.name}
+                          className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-xs sm:text-sm text-primary/80"
+                        >
+                          <span className="relative h-4 w-4 shrink-0">
+                            <Image src={`/${item.icon}`} alt={item.name} fill className="object-contain" />
+                          </span>
+                          {item.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
             {archivedProjects.map((project) => (
               <a
                 key={project.title}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group container-neumorphic-outset p-5 sm:p-6 transition-transform duration-300 hover:scale-[1.02]"
+                className="group container-neumorphic-outset p-5 sm:p-6 transition-transform duration-300 hover:scale-[1.02] hidden md:block"
               >
                 <div className="flex items-start gap-4">
                   <div className="relative h-12 w-12 shrink-0">
