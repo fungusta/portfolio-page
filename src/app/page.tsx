@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ArrowDown, ArrowUpRight, Linkedin, Github, Mail } from "lucide-react"
+import { ArrowDown, ArrowUpRight, Download, Linkedin, Github, Mail } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { WorkExperienceTimeline } from "@/components/work-experience-timeline"
 // import { EducationCard } from "@/components/education-card"
@@ -30,7 +30,7 @@ const featuredProjects: FeaturedProject[] = [
     title: "PayMeLah",
     summary: "A smart Singapore bill-splitting app that scans receipts, splits items among friends, and helps groups settle up instantly with PayNow or PayLah.",
     note:
-      "I built PayMeLah because I want to reduce the friction of chasing friends for money. I wanted an easier way to split bills, keep track of what each person owes, and make settling up feel simple instead of awkward.",
+      "I built PayMeLah because I want to reduce the hastle of keeping track how much each person owes you when you pay first, this app helps make sure you are aware and that your stingy friends PAY YOU.",
     status: "Currently in testing",
     stack: [
       { name: "FastAPI", icon: "images/tech-logos/fastapi.svg", link: "https://fastapi.tiangolo.com/" },
@@ -121,31 +121,31 @@ export default function Page() {
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-secondary">Peter Fung</h1>
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-primary mt-2">Software Engineer</h2>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary mt-2">Crafting digital experiences through code</p>
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary mt-2">I build digital experiences through code.</p>
         <ArrowDown className="mt-8 text-primary animate-bounce" size={24} />
       </section>,
 
     // About Me Section
     <section key="about" className="flex flex-col justify-center h-screen px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-12 sm:py-16">
         <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-7 sm:mb-9 text-secondary">About Me</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-7 sm:mb-9 text-secondary">About</h2>
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <Card className="p-5 sm:p-7 container-neumorphic-inset">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Software Engineering</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I am extremely passionate about creating applications that can genuinely impact people&apos;s lives. 
+                I care deeply about building applications that can genuinely improve people&apos;s lives.
                 <br></br>
                 <br></br>
-                I am especially interested in building AI-powered applications because I believe they are the next step in the application landscape.
+                I&apos;m especially drawn to AI-powered products because I believe they&apos;re shaping the next generation of software.
               </p>
             </Card>
             <Card className="p-5 sm:p-7 container-neumorphic-inset min-h-[px]">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Curious Mind</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I love exploring and experimenting with new things. 
+                I love exploring, experimenting, and following my curiosity. 
                 <br></br>
                 <br></br>
-                I enjoy trying interesting tools and experiences, whether that is drone photography, new AI tools, or other ideas that are interesting to me.
+                Whether it&apos;s drone photography, new AI tools, or a random idea I can&apos;t stop thinking about, I enjoy trying things that stretch how I see and build.
               </p>
             </Card>
           </div>
@@ -158,7 +158,7 @@ export default function Page() {
           <div className="max-w-3xl mb-7 sm:mb-9">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Recent Projects</h2>
             <p className="mt-3 text-base sm:text-lg md:text-xl text-primary/75 leading-relaxed">
-              Recent work that best represents how I design, build, and ship products today.
+              These are some of the projects that best show how I like to design, build, and ship products today.
             </p>
           </div>
 
@@ -355,7 +355,7 @@ export default function Page() {
     // Work Experience Section
     <section key="experience" className="h-screen overflow-hidden px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48 py-8 sm:py-10 md:py-8 lg:py-10">
         <div className="max-w-6xl mx-auto flex h-full w-full flex-col">
-          <h2 className="shrink-0 text-2xl sm:text-3xl md:text-4xl font-bold mb-5 sm:mb-6 md:mb-5 lg:mb-6 text-secondary">Work Experience</h2>
+          <h2 className="shrink-0 text-2xl sm:text-3xl md:text-4xl font-bold mb-5 sm:mb-6 md:mb-5 lg:mb-6 text-secondary">Where I&apos;ve Worked</h2>
           <div className="min-h-0 flex-1">
             <WorkExperienceTimeline />
           </div>
@@ -368,7 +368,7 @@ export default function Page() {
           <div className="max-w-3xl mb-7 sm:mb-9">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Other Projects</h2>
             <p className="mt-3 text-base sm:text-lg md:text-xl text-primary/75 leading-relaxed">
-              Earlier builds and experiments that still show the range of what I like to make.
+              These are earlier builds and experiments that still reflect the kinds of things I love making.
             </p>
           </div>
 
@@ -482,7 +482,7 @@ export default function Page() {
     // Footer
     <footer key="footer" className="h-screen flex flex-col justify-center items-center py-6 sm:py-8 text-center text-base sm:text-lg text-primary/60 px-4 sm:px-12 md:px-24 lg:px-36 xl:px-48">
         <div className="mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-5 text-secondary">Contact Me</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-5 text-secondary">Let&apos;s Connect</h2>
           <div className="flex justify-center space-x-6">
             <a
               href="https://linkedin.com/in/peterjosephfung"
@@ -513,6 +513,14 @@ export default function Page() {
               <Mail size={24} />
             </a>
           </div>
+          <a
+            href="/PeterJosephFungYuRen_Resume.pdf"
+            download
+            className="mt-6 inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-5 py-3 text-sm sm:text-base font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
+          >
+            Download Resume
+            <Download size={18} />
+          </a>
         </div>
       </footer>
   ];
