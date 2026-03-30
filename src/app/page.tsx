@@ -46,7 +46,6 @@ const featuredProjects: FeaturedProject[] = [
       "I built HomeCooked to make recipe creation feel less manual. Instead of copying scattered ingredients and steps by hand, I wanted a smoother way to turn unstructured content into something clean, personal, and easy to reuse.",
     logo: "images/homecooked-logo.png",
     liveLink: "https://home-cooked-gamma.vercel.app/",
-    codeLink: "https://github.com/fungusta",
     stack: [
       { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
       { name: "Supabase", icon: "images/tech-logos/supabase.svg", link: "https://supabase.com/" },
@@ -379,11 +378,11 @@ export default function Page() {
                 href={project.link}
                 target={project.link !== "#" ? "_blank" : undefined}
                 rel={project.link !== "#" ? "noopener noreferrer" : undefined}
-                className="group container-neumorphic-outset p-5 sm:p-6 transition-transform duration-300 hover:scale-[1.02] md:hidden"
+                className="group container-neumorphic-outset p-4 sm:p-5 transition-transform duration-300 hover:scale-[1.02] md:hidden"
               >
                 <div className="flex items-start gap-4">
                   {project.logo ? (
-                    <div className="relative h-12 w-12 shrink-0">
+                    <div className="relative h-11 w-11 shrink-0">
                       <Image
                         src={`/${project.logo}`}
                         alt={`${project.title} logo`}
@@ -408,20 +407,6 @@ export default function Page() {
                     <p className="mt-1 text-sm sm:text-base md:text-lg text-primary/80 leading-relaxed">
                       {project.description}
                     </p>
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.coreStack.map((item) => (
-                        <span
-                          key={item.name}
-                          className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-xs sm:text-sm text-primary/80"
-                        >
-                          <span className="relative h-4 w-4 shrink-0">
-                            <Image src={`/${item.icon}`} alt={item.name} fill className="object-contain" />
-                          </span>
-                          {item.name}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </a>
