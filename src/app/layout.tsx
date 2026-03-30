@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: "Peter Fung",
     images: [
       {
-        url: "/images/headshot.jpg",
+        url: "/images/link-preview.png",
         width: 1200,
         height: 630,
         alt: "Peter Fung portfolio preview",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Peter Fung",
     description: "A little bit about me",
-    images: ["/images/headshot.jpg"],
+    images: ["/images/link-preview.png"],
   },
 };
 
