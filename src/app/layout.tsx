@@ -10,11 +10,11 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.peterjosephfung.com"),
-  title: "Peter Fung",
-  description: "A little bit about me",
+  title: "Peter Fung | AI Software Engineer",
+  description: "AI software engineer building reliable LLM systems, thoughtful products, and full-stack applications.",
   openGraph: {
-    title: "Peter Fung",
-    description: "A little bit about me",
+    title: "Peter Fung | AI Software Engineer",
+    description: "AI software engineer building reliable LLM systems, thoughtful products, and full-stack applications.",
     url: "https://www.peterjosephfung.com",
     siteName: "Peter Fung",
     images: [
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peter Fung",
-    description: "A little bit about me",
+    title: "Peter Fung | AI Software Engineer",
+    description: "AI software engineer building reliable LLM systems, thoughtful products, and full-stack applications.",
     images: ["/images/link-preview.png"],
   },
 };

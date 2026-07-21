@@ -18,14 +18,16 @@ export interface WorkExperience {
 export const workExperiences: WorkExperience[] = [
   {
     company: "NCS",
-    role: "Software Engineer",
+    role: "AI Software Engineer",
     logo: "images/ncs-logo.png",
     link: "https://www.ncs.co/en-sg/",
-    duration: "Sept 2025 - Present",
-    description: "Contributing to an internal AI productivity platform, with a focus on FastAPI backend services and LLM orchestration pipelines that streamline knowledge access and task execution.",
+    duration: "Sep 2025 - Present",
+    description: "Building FastAPI backend services and LLM pipelines for NCSgpt, an internal AI platform used by more than 1,000 employees.",
     achievements: [
-      "Integrated ChatGPT-5.2 and Claude Sonnet 4.5 using the OpenAI and Anthropic SDKs, including streaming response parsing for smooth real-time UI rendering.",
-      "Deployed and configured Langfuse for LLM analytics and observability, enabling prompt tracing, usage monitoring, and evaluation across multiple models.",
+      "Developed a Retrieval-Augmented Generation pipeline over enterprise knowledge sources, combining vector search with LLM generation to ground responses and reduce hallucinations.",
+      "Instrumented NCSgpt with Langfuse and OpenTelemetry for end-to-end observability across prompt tracing, latency monitoring, and cost tracking.",
+      "Designed an Email Agent harness over Microsoft Graph APIs with intent routing and retrieval for secure email search, summarisation, and reply drafting.",
+      "Engineered an AI PowerPoint generation service with Dockerised Python agents that autonomously generate, modify, and adapt decks.",
     ],
     techStack: [
       { name: "Python", icon: "images/tech-logos/python.svg", link: "https://www.python.org/" },
@@ -33,6 +35,7 @@ export const workExperiences: WorkExperience[] = [
       { name: "OpenAI", icon: "images/tech-logos/openai.svg", link: "https://platform.openai.com/" },
       { name: "Anthropic", icon: "images/tech-logos/anthropic.svg", link: "https://www.anthropic.com/" },
       { name: "Langfuse", icon: "images/tech-logos/langfuse.svg", link: "https://langfuse.com/" },
+      { name: "Microsoft Azure", icon: "images/tech-logos/azure.svg", link: "https://azure.microsoft.com/" },
     ],
   },
   {
@@ -41,11 +44,11 @@ export const workExperiences: WorkExperience[] = [
     logo: "images/ryde-logo.png",
     link: "https://rydesharing.com/",
     duration: "Jan 2025 - Jun 2025",
-    description: "Served as the designated frontend developer for the company's WeChat Mini Program, building user-facing flows with a strong focus on responsiveness, reliability, and production readiness.",
+    description: "Built Ryde's WeChat Mini Program frontend from scratch as the sole frontend developer.",
     achievements: [
-      "Developed a secure one-on-one chat platform with WebSockets, including sent, delivered, and read indicators plus push notifications.",
-      "Integrated in-app calling via WebView and handled end-to-end call states from initiation to termination.",
-      "Improved chat performance with lazy-loaded history and carried out end-to-end testing to uncover and fix critical bugs before release.",
+      "Developed real-time one-on-one chat with WebSockets, delivery statuses, read receipts, and push notifications.",
+      "Integrated in-app calling via WebView, handling call initiation, join, and termination states.",
+      "Reduced initial chat history load time by approximately 60% using lazy-loading pagination.",
     ],
     techStack: [
       { name: "JavaScript", icon: "images/tech-logos/javascript.svg", link: "https://www.javascript.com/" },

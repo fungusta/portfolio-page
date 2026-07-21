@@ -13,6 +13,7 @@ type FeaturedProject = {
   status?: string
   logo?: string
   liveLink?: string
+  appStoreLink?: string
   codeLink?: string
   stack: readonly { name: string; icon: string; link: string }[]
 }
@@ -28,10 +29,11 @@ type ArchivedProject = {
 const featuredProjects: FeaturedProject[] = [
   {
     title: "PayMeLah",
-    summary: "A smart Singapore bill-splitting app that scans receipts, splits items among friends, and helps groups settle up instantly with PayNow or PayLah.",
+    summary: "A React Native and FastAPI group bill-splitting app for receipt scanning, shared expense tracking, and automated settlements.",
     note:
-      "I built PayMeLah because I want to reduce the hastle of keeping track how much each person owes you when you pay first, this app helps make sure you are aware and that your stingy friends PAY YOU.",
-    status: "Currently in testing",
+      "Its OCR and AI receipt-parsing pipeline reduces manual input time by over 70%, while itemised and shared-item splitting keeps every group settlement clear.",
+    liveLink: "https://paymelah-app.vercel.app/",
+    appStoreLink: "https://apps.apple.com/sg/app/paymelah/id6761058776",
     stack: [
       { name: "FastAPI", icon: "images/tech-logos/fastapi.svg", link: "https://fastapi.tiangolo.com/" },
       { name: "React Native", icon: "images/tech-logos/react.svg", link: "https://reactnative.dev/" },
@@ -41,16 +43,16 @@ const featuredProjects: FeaturedProject[] = [
   },
   {
     title: "HomeCooked",
-    summary: "An AI-powered recipe app that turns messy web pages and Instagram posts into structured, reusable recipes.",
+    summary: "A React and Next.js app for recipe management, web scraping, and AI-assisted recipe creation.",
     note:
-      "I built HomeCooked to make recipe creation feel less manual. Instead of copying scattered ingredients and steps by hand, I wanted a smoother way to turn unstructured content into something clean, personal, and easy to reuse.",
+      "OpenAI APIs turn web pages and Instagram content into clean, structured recipes in under 30 seconds.",
     logo: "images/homecooked-logo.png",
     liveLink: "https://home-cooked-gamma.vercel.app/",
     stack: [
       { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+      { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
       { name: "Supabase", icon: "images/tech-logos/supabase.svg", link: "https://supabase.com/" },
       { name: "OpenAI", icon: "images/tech-logos/openai.svg", link: "https://platform.openai.com/" },
-      { name: "Node.js", icon: "images/tech-logos/nodejs.svg", link: "https://nodejs.org/" },
     ],
   },
 ] 
@@ -119,8 +121,8 @@ export default function Page() {
           />
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-secondary">Peter Fung</h1>
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-primary mt-2">Software Engineer</h2>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary mt-2">I build digital experiences through code.</p>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-primary mt-2">AI Software Engineer</h2>
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary mt-2">I build reliable AI products and thoughtful digital experiences.</p>
         <ArrowDown className="mt-8 text-primary animate-bounce" size={24} />
       </section>,
 
@@ -130,21 +132,21 @@ export default function Page() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-7 sm:mb-9 text-secondary">About</h2>
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <Card className="p-5 sm:p-7 container-neumorphic-inset">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Software Engineering</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">AI Software Engineering</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I care deeply about building applications that can genuinely improve people&apos;s lives.
+                At NCS, I build FastAPI services and LLM pipelines for an internal AI platform used by more than 1,000 employees.
                 <br></br>
                 <br></br>
-                I&apos;m especially drawn to AI-powered products because I believe they&apos;re shaping the next generation of software.
+                I focus on grounded retrieval, observable agent systems, and practical tools that make complex work feel simpler.
               </p>
             </Card>
             <Card className="p-5 sm:p-7 container-neumorphic-inset min-h-[px]">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Curious Mind</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3">Computer Science at NUS</h3>
               <p className="text-base sm:text-lg md:text-xl text-primary/80 font-light leading-relaxed">
-                I love exploring, experimenting, and following my curiosity. 
+                I graduated with a Bachelor of Computing (Honours) in Computer Science, achieving a GPA of 4.16/5.0.
                 <br></br>
                 <br></br>
-                Whether it&apos;s drone photography, new AI tools, or a random idea I can&apos;t stop thinking about, I enjoy trying things that stretch how I see and build.
+                My specialisations in Software Engineering and Cybersecurity shape how I build systems that are useful, robust, and secure.
               </p>
             </Card>
           </div>
@@ -230,6 +232,18 @@ export default function Page() {
                         className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
                       >
                         Try me out!
+                        <ArrowUpRight size={18} />
+                      </a>
+                    ) : null}
+                    {project.appStoreLink ? (
+                      <a
+                        href={project.appStoreLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-primary transition-transform duration-300 hover:scale-[1.02]"
+                        aria-label={`Download ${project.title} from the App Store`}
+                      >
+                        App Store
                         <ArrowUpRight size={18} />
                       </a>
                     ) : null}
@@ -324,6 +338,18 @@ export default function Page() {
                         className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-secondary transition-transform duration-300 hover:scale-[1.02]"
                       >
                         Try me out!
+                        <ArrowUpRight size={18} />
+                      </a>
+                    ) : null}
+                    {project.appStoreLink ? (
+                      <a
+                        href={project.appStoreLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full container-neumorphic-outset px-4 py-2.5 text-sm font-semibold text-primary transition-transform duration-300 hover:scale-[1.02]"
+                        aria-label={`Download ${project.title} from the App Store`}
+                      >
+                        App Store
                         <ArrowUpRight size={18} />
                       </a>
                     ) : null}
