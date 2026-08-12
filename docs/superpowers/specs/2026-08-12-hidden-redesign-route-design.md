@@ -16,7 +16,7 @@ The `/new` route is an unlisted preview, not an authenticated private page. Some
 
 The existing homepage remains in `src/app/page.tsx`. A separate App Router page at `src/app/new/page.tsx` owns the redesign canvas. Keeping the routes independent prevents unfinished redesign work from affecting the current portfolio and avoids adding client-side toggle state to the existing page.
 
-The initial redesign page contains only an empty `main` element sized to the viewport. Its design canvas uses a white background with crisp one-pixel black grid lines spaced 32 pixels apart. It introduces no copy, controls, or placeholder layout.
+The initial redesign page contains only an empty `main` element sized to the viewport. Its design canvas uses a subtly warm off-white (`#fafaf9`) background with crisp one-pixel black grid lines spaced 32 pixels apart. It introduces no copy, controls, or placeholder layout.
 
 ## Behavior and Accessibility
 
