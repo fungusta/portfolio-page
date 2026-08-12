@@ -18,6 +18,8 @@ The existing homepage remains in `src/app/page.tsx`. A separate App Router page 
 
 The initial redesign page contains only an empty `main` element sized to the viewport. Its design canvas uses a subtly warm off-white (`#fafaf9`) background with crisp one-pixel black grid lines spaced 32 pixels apart. It introduces no copy, controls, or placeholder layout.
 
+At the center of the canvas, an empty 16:9 planning card provides a boundary for arranging future portfolio elements. Its solid fill matches the page background, masking the grid within the card. A three-pixel black outline uses long, rounded dashes and a 32-pixel corner radius. The card contains no placeholder text or interactive behavior.
+
 ## Behavior and Accessibility
 
 The new page has no interactive elements, so it requires no keyboard handlers or ARIA labels. It inherits the application's root layout and global styling. The current homepage behavior, full-page scrolling, and navigation remain unchanged.
