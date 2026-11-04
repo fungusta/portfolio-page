@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #F3F3F3;
+  /* Lavender-tinted surface so it shares a hue with its own shadows */
+  --background: #ECEAF4;
   --foreground: #171717;
+  --neu-dark: 158 150 196;
+  --neu-light: 255 255 255;
+  /* Light direction multipliers, updated by <CursorLight /> */
+  --lx: 1;
+  --ly: 1;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -13,11 +19,6 @@
     --foreground: #ededed;
   }
 } */
-
-html, body {
-  overflow: hidden;
-  height: 100%;
-}
 
 body {
   color: var(--foreground);
