@@ -32,6 +32,21 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Cat Type",
+    summary: "A Python desktop companion for Windows, macOS, and Linux that puts a tiny animated cat beside your cursor and taps along while you type.",
+    note:
+      "On Windows, native accessibility APIs place the cat right beside the text caret, and an achievement system turns typing history into unlockable wardrobe accessories.",
+    preview: "images/projects/cattype.jpg",
+    liveLink: "https://fungusta.github.io/cat-type/",
+    codeLink: "https://github.com/fungusta/cat-type",
+    stack: [
+      { name: "Python", icon: "images/tech-logos/python.svg", link: "https://www.python.org/" },
+      { name: "Tkinter", icon: "images/tech-logos/tkinter.svg", link: "https://docs.python.org/3/library/tkinter.html" },
+      { name: "Pillow", icon: "images/tech-logos/pillow.png", link: "https://python-pillow.github.io/" },
+      { name: "pynput", icon: "images/tech-logos/pynput.svg", link: "https://pynput.readthedocs.io/" },
+    ],
+  },
+  {
     title: "HomeCooked",
     summary: "A React and Next.js app for recipe management, web scraping, and AI-assisted recipe creation.",
     note:
