@@ -20,7 +20,7 @@ export const projects: Project[] = [
     title: "PayMeLah",
     summary: "A React Native and FastAPI group bill-splitting app for receipt scanning, shared expense tracking, and automated settlements.",
     note:
-      "Its OCR and AI receipt-parsing pipeline reduces manual input time by over 70%, while itemised and shared-item splitting keeps every group settlement clear.",
+      "My friends David and Jared kept complaining about having to pay for Bill Bear, so I built a free alternative where the only one who pays is me, in server bills. Its OCR and AI receipt-parsing pipeline reduces manual input time by over 70%, while itemised and shared-item splitting keeps every group settlement clear.",
     preview: "images/projects/paymelah.jpg",
     liveLink: "https://paymelah-app.vercel.app/",
     appStoreLink: "https://apps.apple.com/sg/app/paymelah/id6761058776",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     title: "Cat Type",
     summary: "A Python desktop companion for Windows, macOS, and Linux that puts a tiny animated cat beside your cursor and taps along while you type.",
     note:
-      "On Windows, native accessibility APIs place the cat right beside the text caret, and an achievement system turns typing history into unlockable wardrobe accessories.",
+      "My own take on Bongo Cat: instead of staying put in a corner, this cat follows you around the screen and pops up right beside wherever you're typing. It comes in six coats I designed myself, and the more you type, the more outfits it unlocks.",
     preview: "images/projects/cattype.jpg",
     liveLink: "https://fungusta.github.io/cat-type/",
     codeLink: "https://github.com/fungusta/cat-type",
