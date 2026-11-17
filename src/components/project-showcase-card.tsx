@@ -2,6 +2,7 @@ import type { ReactElement } from "react"
 import Image from "next/image"
 import { ArrowUpRight, Github } from "lucide-react"
 
+import { trackClick } from "@/constants/analytics"
 import type { Project } from "@/constants/projects"
 
 interface ProjectShowcaseCardProps {
@@ -64,7 +65,14 @@ export const ProjectShowcaseCard = ({ project, className = "" }: ProjectShowcase
 
       <div className="mt-auto flex flex-wrap gap-3 pt-5">
         {project.liveLink ? (
-          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className={ACTION_CLASS} tabIndex={0}>
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={ACTION_CLASS}
+            tabIndex={0}
+            {...trackClick("project-click", { project: project.title, link: "live" })}
+          >
             Try me out!
             <ArrowUpRight size={18} />
           </a>
@@ -77,13 +85,21 @@ export const ProjectShowcaseCard = ({ project, className = "" }: ProjectShowcase
             className={ACTION_CLASS}
             aria-label={`Download ${project.title} from the App Store`}
             tabIndex={0}
+            {...trackClick("project-click", { project: project.title, link: "app-store" })}
           >
             App Store
             <ArrowUpRight size={18} />
           </a>
         ) : null}
         {project.codeLink ? (
-          <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className={ACTION_CLASS} tabIndex={0}>
+          <a
+            href={project.codeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={ACTION_CLASS}
+            tabIndex={0}
+            {...trackClick("project-click", { project: project.title, link: "code" })}
+          >
             View Code
             <Github size={18} />
           </a>

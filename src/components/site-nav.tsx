@@ -4,6 +4,7 @@ import type { ReactElement } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Download, Home } from 'lucide-react'
+import { trackClick } from '@/constants/analytics'
 
 const pageLinks = [
   { href: '/projects', label: 'Projects' },
@@ -55,6 +56,7 @@ export const SiteNav = (): ReactElement => {
           className={`${LINK_CLASS} inline-flex items-center gap-1.5 text-ink-soft hover:text-secondary`}
           aria-label="Download resume"
           tabIndex={0}
+          {...trackClick('resume-download', { location: 'nav' })}
         >
           Resume
           <Download size={15} aria-hidden="true" />

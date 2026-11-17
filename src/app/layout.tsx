@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 import { Nunito_Sans } from 'next/font/google'
+import { UMAMI_DOMAINS, UMAMI_SCRIPT_SRC, UMAMI_WEBSITE_ID } from "@/constants/analytics";
 
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
@@ -44,6 +46,12 @@ export default function RootLayout({
     <html lang="en" className={nunitoSans.className}>
       <body>
         {children}
+        <Script
+          src={UMAMI_SCRIPT_SRC}
+          data-website-id={UMAMI_WEBSITE_ID}
+          data-domains={UMAMI_DOMAINS}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

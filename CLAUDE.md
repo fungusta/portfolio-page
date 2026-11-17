@@ -23,6 +23,8 @@ No test suite is configured.
 
 **Data layer (`src/constants/`):** Portfolio content lives here as typed constants: `projects.ts` (featured and archived projects), `work-experience.ts` (timeline roles), `resources.ts` (older content), `site.ts` (per-page metadata helper).
 
+**Analytics (`src/constants/analytics.ts`):** Umami Cloud, cookieless. `layout.tsx` loads the script with the (public) website ID from `analytics.ts`, and `data-domains` means only visits on peterjosephfung.com are counted, never localhost. Page views are automatic; clicks are tracked by spreading `trackClick(event, props)` onto a link, which adds `data-umami-event-*` attributes (works in server components). Current events: `resume-download` (location), `contact-click` (channel), `project-click` (project, link), `company-click` (company).
+
 **Neumorphic design system:** Custom Tailwind plugin in `tailwind.config.ts` defines `.container-neumorphic-outset` / `.container-neumorphic-inset` plus `.neu-well`, `.neu-button`, `.neu-chip`, `.neu-pressed` and `.neu-pressable` (sinks in while held). Shadow offsets multiply `--lx` / `--ly`, which `src/components/cursor-light.tsx` moves with the pointer. The surface is `#ECEAF4`; primary is `#7F71B9`, secondary `#201A72`, body text `ink-soft` `#574C8F`. Keep it minimal: no accent glows or badges.
 
 **`OutdentCard` (`src/components/ui/card.tsx`):** Expandable card component — click handling distinguishes link clicks from expansion triggers. Uses `max-height` CSS transition for smooth expand/collapse.

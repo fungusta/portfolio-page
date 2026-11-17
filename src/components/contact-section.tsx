@@ -2,12 +2,13 @@ import type { ReactElement } from "react"
 import { Download, Github, Linkedin, Mail } from "lucide-react"
 import { RevealSection } from "@/components/ui/reveal-section"
 import { SectionHeading } from "@/components/ui/section-heading"
+import { trackClick } from "@/constants/analytics"
 import { RISE } from "@/constants/motion"
 
 const contactLinks = [
-  { href: "https://linkedin.com/in/peterjosephfung", label: "LinkedIn Profile", icon: Linkedin, delay: "[animation-delay:150ms]" },
-  { href: "https://github.com/fungusta", label: "GitHub Profile", icon: Github, delay: "[animation-delay:230ms]" },
-  { href: "mailto:peterjosephfung@gmail.com", label: "Email Me", icon: Mail, delay: "[animation-delay:310ms]" },
+  { href: "https://linkedin.com/in/peterjosephfung", label: "LinkedIn Profile", channel: "linkedin", icon: Linkedin, delay: "[animation-delay:150ms]" },
+  { href: "https://github.com/fungusta", label: "GitHub Profile", channel: "github", icon: Github, delay: "[animation-delay:230ms]" },
+  { href: "mailto:peterjosephfung@gmail.com", label: "Email Me", channel: "email", icon: Mail, delay: "[animation-delay:310ms]" },
 ]
 
 // Closes every page so a visitor can reach out wherever they stop reading.
@@ -21,7 +22,7 @@ export const ContactSection = (): ReactElement => (
       />
 
       <div className="mt-10 flex items-center justify-center gap-5 sm:gap-7">
-        {contactLinks.map(({ href, label, icon: Icon, delay }) => (
+        {contactLinks.map(({ href, label, channel, icon: Icon, delay }) => (
           <a
             key={label}
             href={href}
@@ -30,6 +31,7 @@ export const ContactSection = (): ReactElement => (
             className={`neu-button neu-pressable flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full text-secondary transition-colors hover:text-primary ${RISE} ${delay}`}
             aria-label={label}
             tabIndex={0}
+            {...trackClick("contact-click", { channel })}
           >
             <Icon size={24} />
           </a>
@@ -42,6 +44,7 @@ export const ContactSection = (): ReactElement => (
         className={`neu-button neu-pressable mt-10 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm sm:text-base font-bold text-secondary ${RISE} [animation-delay:390ms]`}
         aria-label="Download resume"
         tabIndex={0}
+        {...trackClick("resume-download", { location: "contact" })}
       >
         Download Resume
         <Download size={18} />

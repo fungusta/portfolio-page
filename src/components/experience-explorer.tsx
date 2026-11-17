@@ -2,6 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent, type ReactElement } from 'react'
 import Image from 'next/image'
+import { trackClick } from '@/constants/analytics'
 import { workExperiences, type WorkExperience } from '@/constants/work-experience'
 
 const LogoWell = ({ job, size = 'md' }: { job: WorkExperience; size?: 'sm' | 'md' }): ReactElement => {
@@ -31,6 +32,7 @@ const RoleHeader = ({ job }: { job: WorkExperience }): ReactElement => (
           rel="noopener noreferrer"
           className="text-sm sm:text-base lg:text-lg text-ink-soft underline-offset-4 hover:text-secondary hover:underline"
           tabIndex={0}
+          {...trackClick('company-click', { company: job.company })}
         >
           {job.company}
         </a>

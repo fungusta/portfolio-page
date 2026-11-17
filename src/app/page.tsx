@@ -8,6 +8,7 @@ import { RotatingTitle } from "@/components/rotating-title"
 import { SiteFrame } from "@/components/site-frame"
 import { RevealSection } from "@/components/ui/reveal-section"
 import { SectionHeading } from "@/components/ui/section-heading"
+import { trackClick } from "@/constants/analytics"
 import { FADE_UP, RISE } from "@/constants/motion"
 
 // The hero's rotating role; the first word is shown on load, so keep the job title first
@@ -64,6 +65,7 @@ const HomePage = (): ReactElement => (
           className={`neu-button neu-pressable inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm sm:text-base font-bold text-secondary ${RISE} [animation-delay:500ms]`}
           aria-label="Download resume"
           tabIndex={0}
+          {...trackClick("resume-download", { location: "hero" })}
         >
           Resume
           <Download size={18} />
