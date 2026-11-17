@@ -11,7 +11,9 @@ const LogoWell = ({ job, size = 'md' }: { job: WorkExperience; size?: 'sm' | 'md
   return (
     <span className={`neu-well relative flex shrink-0 items-center justify-center ${box}`}>
       <span className={`relative ${img}`}>
-        <Image src={`/${job.logo}`} alt="" fill className="rounded-md object-contain" />
+        {/* One percentage radius for every logo, at every size. It's larger than the corners some PNGs
+            ship with (Economy-v1's are ~23%), so those baked-in corners are clipped away and all tiles match. */}
+        <Image src={`/${job.logo}`} alt="" fill className="rounded-[25%] object-cover" />
       </span>
     </span>
   )
@@ -42,29 +44,33 @@ const RoleDetails = ({ job }: { job: WorkExperience }): ReactElement => (
   <>
     <RoleHeader job={job} />
     <p className="mt-5 text-base lg:text-lg text-ink-soft leading-relaxed">{job.description}</p>
-    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm sm:text-base lg:text-[1.0625rem] text-ink-soft leading-relaxed marker:text-primary">
-      {job.achievements.map((achievement) => (
-        <li key={achievement}>{achievement}</li>
-      ))}
-    </ul>
-    <div className="mt-6 flex flex-wrap gap-2.5">
-      {job.techStack.map((item) => (
-        <a
-          key={item.name}
-          href={item.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="neu-chip neu-pressable inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:text-sm text-ink-soft"
-          aria-label={`Open ${item.name}`}
-          tabIndex={0}
-        >
-          <span className="relative h-4 w-4 shrink-0">
-            <Image src={`/${item.icon}`} alt="" fill className="object-contain" />
-          </span>
-          {item.name}
-        </a>
-      ))}
-    </div>
+    {job.achievements.length > 0 && (
+      <ul className="mt-4 list-disc space-y-2 pl-5 text-sm sm:text-base lg:text-[1.0625rem] text-ink-soft leading-relaxed marker:text-primary">
+        {job.achievements.map((achievement) => (
+          <li key={achievement}>{achievement}</li>
+        ))}
+      </ul>
+    )}
+    {job.techStack.length > 0 && (
+      <div className="mt-6 flex flex-wrap gap-2.5">
+        {job.techStack.map((item) => (
+          <a
+            key={item.name}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="neu-chip neu-pressable inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:text-sm text-ink-soft"
+            aria-label={`Open ${item.name}`}
+            tabIndex={0}
+          >
+            <span className="relative h-4 w-4 shrink-0">
+              <Image src={`/${item.icon}`} alt="" fill className="object-contain" />
+            </span>
+            {item.name}
+          </a>
+        ))}
+      </div>
+    )}
   </>
 )
 
@@ -93,7 +99,7 @@ export const ExperienceExplorer = (): ReactElement => {
 
   return (
     <>
-      {/* flex-1: fills whatever height the page leaves; auto-rows-fr keeps the six roles equally tall */}
+      {/* flex-1: fills whatever height the page leaves; auto-rows-fr keeps every role equally tall */}
       <div className="hidden md:grid md:flex-1 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] lg:grid-cols-[minmax(0,21rem)_minmax(0,1fr)] gap-8 lg:gap-10">
         <div
           role="tablist"

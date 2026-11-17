@@ -17,25 +17,35 @@ export interface WorkExperience {
 
 export const workExperiences: WorkExperience[] = [
   {
+    company: "GovTech Singapore",
+    role: "Software Engineer",
+    logo: "images/govtech-logo.jpg",
+    link: "https://www.tech.gov.sg/",
+    duration: "Nov 2026 - Present",
+    description: "Software Engineer in the Singpass team.",
+    achievements: [],
+    techStack: [],
+  },
+  {
     company: "NCS",
-    role: "AI Software Engineer",
+    role: "AI Engineer",
     logo: "images/ncs-logo.png",
     link: "https://www.ncs.co/en-sg/",
-    duration: "Sep 2025 - Present",
-    description: "Building FastAPI backend services and LLM pipelines for NCSgpt, an internal AI platform used by more than 1,000 employees.",
+    duration: "Sep 2025 - Nov 2026",
+    description: "Worked on NCSgpt, an internal AI platform used by 1,000+ employees.",
     achievements: [
-      "Developed a Retrieval-Augmented Generation pipeline over enterprise knowledge sources, combining vector search with LLM generation to ground responses and reduce hallucinations.",
-      "Instrumented NCSgpt with Langfuse and OpenTelemetry for end-to-end observability across prompt tracing, latency monitoring, and cost tracking.",
-      "Designed an Email Agent harness over Microsoft Graph APIs with intent routing and retrieval for secure email search, summarisation, and reply drafting.",
-      "Engineered an AI PowerPoint generation service with Dockerised Python agents that autonomously generate, modify, and adapt decks.",
+      "Built FastAPI services and LLM pipelines with OpenAI and Anthropic models and real-time streaming.",
+      "Developed a PowerPoint agent that creates and refines NCS template presentations in containerised Python environments, with built-in visual quality checks.",
+      "Developed an Email Agent harness that lets users search, summarise, and draft replies to their emails within NCSgpt.",
     ],
     techStack: [
       { name: "Python", icon: "images/tech-logos/python.svg", link: "https://www.python.org/" },
       { name: "FastAPI", icon: "images/tech-logos/fastapi.svg", link: "https://fastapi.tiangolo.com/" },
+      { name: "React", icon: "images/tech-logos/react.svg", link: "https://react.dev/" },
+      { name: "PostgreSQL", icon: "images/tech-logos/postgresql.svg", link: "https://www.postgresql.org/" },
+      { name: "Docker", icon: "images/tech-logos/docker.svg", link: "https://www.docker.com/" },
       { name: "OpenAI", icon: "images/tech-logos/openai.svg", link: "https://platform.openai.com/" },
       { name: "Anthropic", icon: "images/tech-logos/anthropic.svg", link: "https://www.anthropic.com/" },
-      { name: "Langfuse", icon: "images/tech-logos/langfuse.svg", link: "https://langfuse.com/" },
-      { name: "Microsoft Azure", icon: "images/tech-logos/azure.svg", link: "https://azure.microsoft.com/" },
     ],
   },
   {
@@ -46,9 +56,9 @@ export const workExperiences: WorkExperience[] = [
     duration: "Jan 2025 - Jun 2025",
     description: "Built Ryde's WeChat Mini Program frontend from scratch as the sole frontend developer.",
     achievements: [
-      "Developed real-time one-on-one chat with WebSockets, delivery statuses, read receipts, and push notifications.",
-      "Integrated in-app calling via WebView, handling call initiation, join, and termination states.",
-      "Reduced initial chat history load time by approximately 60% using lazy-loading pagination.",
+      "Developed real-time chat with WebSockets, read receipts, and push notifications.",
+      "Integrated in-app calling via WebView.",
+      "Cut chat history load time by about 60% with lazy-loading pagination.",
     ],
     techStack: [
       { name: "JavaScript", icon: "images/tech-logos/javascript.svg", link: "https://www.javascript.com/" },
@@ -62,10 +72,9 @@ export const workExperiences: WorkExperience[] = [
     logo: "images/economy-v1-logo.png",
     link: "https://economy-v1.com/",
     duration: "Oct 2024 - Dec 2024",
-    description: "Built a responsive web platform that lets users create, manage, and host nodes for AI agents, with real-time visibility into each node's specifications and status.",
+    description: "Built a web platform for creating, managing, and hosting AI agent nodes, with live status for each node.",
     achievements: [
-      "Designed and implemented key product surfaces including the landing page, node details page, and node update page.",
-      "Used Next.js, TypeScript, React, and Tailwind CSS to deliver an intuitive and scalable frontend experience.",
+      "Designed and built the landing, node details, and node update pages.",
     ],
     techStack: [
       { name: "Next.js", icon: "images/tech-logos/next-js.svg", link: "https://nextjs.org/" },
@@ -80,10 +89,10 @@ export const workExperiences: WorkExperience[] = [
     logo: "images/csa-logo.jpg",
     link: "https://www.csa.gov.sg/",
     duration: "Dec 2023 - Mar 2024",
-    description: "Conducted in-depth research and evaluation of mobile antivirus applications across iOS and Android to assess how well they protect everyday users.",
+    description: "Evaluated how well mobile antivirus apps protect everyday users.",
     achievements: [
-      "Tested 20 antivirus applications across iOS and Android platforms.",
-      "Developed a grading scheme to assess each application's effectiveness against identified threats and presented the findings to senior cyber security professionals.",
+      "Tested 20 antivirus apps across iOS and Android.",
+      "Developed a grading scheme for each app's effectiveness and presented the findings to senior cyber security professionals.",
       "Used Kali Linux to securely store malware samples for evaluation.",
     ],
     techStack: [
@@ -96,10 +105,10 @@ export const workExperiences: WorkExperience[] = [
     logo: "images/witzu-logo.png",
     link: "https://www.witzuhealth.com/",
     duration: "May 2023 - Aug 2023",
-    description: "Designed and built mobile app features with Flutter and Dart, collaborating across functions to improve both interface quality and content delivery.",
+    description: "Designed and built mobile app features with Flutter and Dart.",
     achievements: [
-      "Designed 40 new mobile interfaces in Figma and created interactive prototypes to communicate new functionality clearly.",
-      "Implemented a dynamic feed system backed by RESTful APIs so users could view content from other users more smoothly.",
+      "Designed 40 mobile screens and interactive prototypes in Figma.",
+      "Implemented a feed of other users' content backed by RESTful APIs.",
     ],
     techStack: [
       { name: "Figma", icon: "images/tech-logos/figma.svg", link: "https://www.figma.com/" },
@@ -112,10 +121,10 @@ export const workExperiences: WorkExperience[] = [
     logo: "images/dynamite-games-logo.png",
     link: "https://www.dynamitegames.io/",
     duration: "Dec 2022 - Jan 2023",
-    description: "Developed an automated broadcast Telegram bot capable of broadcasting messages to multiple groups simultaneously.",
+    description: "Developed a Telegram bot that broadcasts messages to multiple groups at once.",
     achievements: [
-      "Ensured 24/7 uptime through Google Apps Script integration",
-      "Implemented targeted alerts to multiple audience groups",
+      "Kept it running 24/7 with Google Apps Script.",
+      "Implemented targeted alerts for different audience groups.",
     ],
     techStack: [
       { name: "TypeScript", icon: "images/tech-logos/typescript.svg", link: "https://www.typescriptlang.org/" },

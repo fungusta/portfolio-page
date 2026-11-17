@@ -8,7 +8,7 @@ import { pageMetadata } from "@/constants/site"
 
 export const metadata = pageMetadata(
   "Experience | Peter Fung",
-  "Where Peter Fung has worked, from game studio internships to AI software engineering at NCS.",
+  "Where Peter Fung has worked, from game studio internships to AI engineering at NCS and now Singpass at GovTech.",
   "/experience"
 )
 
