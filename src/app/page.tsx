@@ -33,7 +33,7 @@ const HomePage = (): ReactElement => (
       <div className={`relative mb-8 rounded-full neu-well p-3 sm:p-4 ${FADE_UP}`}>
         <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48 lg:h-52 lg:w-52 overflow-hidden rounded-full container-neumorphic-outset p-0">
           <ProfileImageCarousel
-            images={["images/headshot.jpg", "images/casualshot.jpg", "images/drone.jpeg"]}
+            images={["images/headshot.jpg", "images/mountains.jpg", "images/casualshot.jpg", "images/drone.jpeg"]}
             interval={3000}
             alt="Peter Fung profile photo"
           />
